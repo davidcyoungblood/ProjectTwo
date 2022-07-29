@@ -1,4 +1,8 @@
+import { Container } from "../components/data";
+
 export const ViewAccount = () => {
-    return <h1>Hello View Account</h1>;
+    return (
+      <Container/>
+    );
   };
   

@@ -5,13 +5,7 @@ export const Logo = () => {
       <img
         src="icon.png"
         alt=""
-        style={{
-        position: "absolute",
-          left: 10,
-          top: 10,
-          height: "5vh",
-          display: "flex"
-        }}
+        className="logo"
       />
     </NavLink>
   );
