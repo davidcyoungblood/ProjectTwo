@@ -1,19 +1,40 @@
 import axios from "axios";
+import { useState, useEffect } from "react";
 
-export const ProfileDetails = ({profile}) => {
+export const ProfileDetails = () => {
+  const [profile, setProfiles] = useState([]); 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8090/profiles/2`/*, {data : profile.id}*/)
+      .then((res) => setProfiles(res.data));
+  }, []);
   return (
     <div>
-
       <h1>Profile Details</h1>
       <table>
-        <tr>First Name: </tr>
-        <tr>Last Name: </tr>
-        <tr>Username: </tr>
-        <tr>Email: </tr>
-      </table>
-      <button type="button" className="btn btn-dark">Edit</button>
+        <tbody>
+          <tr>
+            <td>First Name: {profile.firstName}</td>
+          </tr>
 
-      <button type="button"className="btn btn-primary">Reset Password</button>
+          <tr>
+            <td> Last Name: {profile.lastName}</td>
+          </tr>
+          <tr>
+            <td>Username: {profile.username}</td>
+          </tr>
+          <tr>
+            <td>Email: {profile.email} </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button type="button" className="btn btn-dark">
+        Modify Profile
+      </button>
+      <button type="button" className="btn btn-primary">
+        Reset Password
+      </button>
     </div>
   );
 };

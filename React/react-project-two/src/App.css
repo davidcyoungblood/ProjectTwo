@@ -37,6 +37,11 @@
   top: 10px;
   height: 7vh;
   position: absolute;
-  
-  
 }
+/*Update nav look */
+#navbar {
+  max-width: 70%; 
+}
+
+  
+

@@ -16,32 +16,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.beans.Profile;
+import com.skillstorm.beans.ServicePlan;
 import com.skillstorm.repositories.ProfileRepository;
+import com.skillstorm.repositories.ServicePlanRepository;
 
 @RestController
-@RequestMapping("/profiles")
+@RequestMapping("/plan")
 @CrossOrigin(origins = "*")
-public class ProfileController {
+public class ServicePlanController {
 
 	@Autowired
-	private ProfileRepository repository;
-
-	@GetMapping() // GET METHOD
-	public List<Profile> getProfiles() {
-		// Here we can add custom response codes using @ApiResponse
-		// Maybe you want to log some information to a logger 'log.debug'
-		return repository.findAll();
-	}
-
-	@PostMapping
-	@Transactional
-	public ResponseEntity<Profile> save(@RequestBody Profile profile) {
-		return new ResponseEntity<>(repository.save(profile), HttpStatus.CREATED); 
-	}
+	private ServicePlanRepository repository;
 	
-	// Update findby id
 	@GetMapping("/{id}")
-	public Optional<Profile> findById(@PathVariable int id) {
+	public Optional<ServicePlan> findById(@PathVariable int id) {
 		return repository.findById(id); 
 		
 	}
