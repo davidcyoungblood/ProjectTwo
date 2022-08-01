@@ -1,0 +1,14 @@
+# in dev profile
+server:
+  port: 8090
+
+spring:  
+  sql:
+    init:
+      platform: h2 
+  jpa:
+    # please use Pascal_Case so you don't need this:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: none

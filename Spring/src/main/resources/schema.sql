@@ -1,7 +1,3 @@
-/*******************************************************************************
-   Create Tables
-********************************************************************************/
-
 create table Profile (
 	ProfileId INT NOT NULL AUTO_INCREMENT,
     FirstName VARCHAR(50),
@@ -15,9 +11,9 @@ create table Profile (
 create table ServicePlan (
 	ServicePlanId INT NOT NULL AUTO_INCREMENT,
 	Name VARCHAR(50),
-    StartDate DATE,
-	NextBillDate DATE,
-	EndDate DATE,
+    StartDate VARCHAR(50),
+	NextBillDate VARCHAR(50),
+	EndDate VARCHAR(50),
 	Price VARCHAR(50),
     StatusId INT NOT NULL,
     IntervalsId INT NOT NULL,
@@ -37,14 +33,12 @@ create table Status (
 
 create table BillingInformation (
 	BillingInformationId INT NOT NULL AUTO_INCREMENT,
-	BilledOnDate DATE,
+	BilledOnDate VARCHAR(50),
     ProfileId INT NOT NULL,
     CONSTRAINT PKBillingInformationId PRIMARY KEY (BillingInformationId)
 );
 
-/*******************************************************************************
-   Create Foreign Keys
-********************************************************************************/
+
 
 ALTER TABLE Profile ADD CONSTRAINT ProfileFKServicePlanId
 FOREIGN KEY (ServicePlanId) REFERENCES ServicePlan(ServicePlanId) ON DELETE NO ACTION ON UPDATE NO ACTION;
