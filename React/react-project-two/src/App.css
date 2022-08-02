@@ -38,10 +38,15 @@
   height: 7vh;
   position: absolute;
 }
-/*Update nav look */
+
 #navbar {
   max-width: 70%; 
 }
 
+.center {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
   
 

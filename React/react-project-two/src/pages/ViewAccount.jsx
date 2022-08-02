@@ -1,8 +1,11 @@
 import { Container } from "../components/data";
+import { NavBar } from "../components/NavBar";
 
 export const ViewAccount = () => {
-    return (
-      <Container/>
-    );
-  };
-  
+  return (
+    <div>
+      <NavBar />
+      <Container />
+    </div>
+  );
+};

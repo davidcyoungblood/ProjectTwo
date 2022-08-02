@@ -11,30 +11,23 @@
 
 // import { makeStyles } from '@mui/material';
 
-import Button from '@mui/material/Button'
-import SignUp from '../components/SignUp';
-import SignIn from '../components/SignIn';
-import { NavLink } from 'react-router-dom';
+import Button from "@mui/material/Button";
+import SignUp from "../components/SignUp";
+import SignIn from "../components/SignIn";
+import { Link } from "react-router-dom";
+import NavLink from "react-bootstrap/esm/NavLink";
 
 export const Welcome = () => {
-    return (
-        <>
-            {/* <NavLink href="SignUp">
-                <Button variant="contained" size="large" href="outlined-buttons" onClick={() => {
-                    alert('Signed up');
-                }}>
-                    SignUp
-                </Button>
-            </NavLink>
-            <NavLink href="SignIn">
-                <Button variant="contained" size="large" href="outlined-buttons">
-                    SignIn
-                </Button>
-            </NavLink> */}
+  return (
+    <div className="center">
+      <NavLink as={Link} to="/signin">
+        <Button>Sign In</Button>
+      </NavLink>
+      <NavLink as={Link} to="/signup">
+        <Button>Sign Up</Button>
+      </NavLink>
 
-            <SignUp />
-            <SignIn />
-        </>
-    );
+      
+    </div>
+  );
 };
-

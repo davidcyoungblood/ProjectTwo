@@ -1,7 +1,7 @@
 import NavLink from "react-bootstrap/esm/NavLink";
 export const Logo = () => {
   return (
-    <NavLink href="Home">
+    <NavLink href="/">
       <img
         src="icon.png"
         alt=""

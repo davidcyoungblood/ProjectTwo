@@ -9,12 +9,10 @@ function App() {
   return (
     <>
     <div>
-    <Logo/>
+    
     <Navigation/>
+    <Logo/>
     </div>
-    
-    <Welcome/>
-    
     </>
     
   );
