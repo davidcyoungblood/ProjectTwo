@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Copyright } from './Copyright';
+import { NavLink } from 'react-router-dom';
 
 // https://github.com/mui/material-ui/blob/v5.9.2/docs/data/material/getting-started/templates/sign-in/SignIn.js
 
@@ -71,6 +72,15 @@ export default function SignIn() {
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
                         />
+                        {/** <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
+                        >
+                            Sign In
+                        </Button>*/}
+                        <NavLink as={Link} to="/home" >
                         <Button
                             type="submit"
                             fullWidth
@@ -79,6 +89,8 @@ export default function SignIn() {
                         >
                             Sign In
                         </Button>
+                        </NavLink>
+                        
                         <Grid container>
                             <Grid item xs>
                                 <Link href="#" variant="body2">

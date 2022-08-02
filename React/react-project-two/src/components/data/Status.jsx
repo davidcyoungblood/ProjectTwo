@@ -2,7 +2,7 @@ import axios from "axios";
 export const Status = () => {
   return (
     <div>
-      <h1>Status</h1>
+      <h2 id="account-titles">Status</h2>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

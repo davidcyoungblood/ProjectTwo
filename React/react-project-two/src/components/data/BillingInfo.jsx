@@ -2,7 +2,7 @@ import axios from "axios";
 export const BillingInfo = () => {
   return (
     <div>
-      <h1>Billing Info</h1>
+      <h2 id="account-titles">Billing Information</h2>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
