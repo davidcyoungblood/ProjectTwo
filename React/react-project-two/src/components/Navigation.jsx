@@ -6,20 +6,20 @@ import NavLink from "react-bootstrap/esm/NavLink";
 export const Navigation = () => {
   return (
     <>
-    <BrowserRouter >
-      <Navbar >
-        <Container id="navbar">
-          <NavLink as={Link} to="/home">Home</NavLink>
-          <NavLink as={Link} to="/signout">Sign Out</NavLink>
-          <NavLink as={Link} to="/viewaccount">View Account</NavLink>
-        </Container>
-      </Navbar>
+      <BrowserRouter >
+        <Navbar >
+          <Container id="navbar">
+            <NavLink as={Link} to="/home">Home</NavLink>
+            <NavLink as={Link} to="/viewaccount">View Account</NavLink>
+            <NavLink as={Link} to="/signout">Sign Out</NavLink>
+          </Container>
+        </Navbar>
 
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/viewaccount" element={<ViewAccount />} />
-        <Route path="/signout" element={<SignOut />} />
-      </Routes>
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/viewaccount" element={<ViewAccount />} />
+          <Route path="/signout" element={<SignOut />} />
+        </Routes>
       </BrowserRouter>
     </>
   );
