@@ -13,7 +13,6 @@ import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Copyright } from './Copyright';
-import { NavLink } from 'react-router-dom';
 
 // https://github.com/mui/material-ui/blob/v5.9.2/docs/data/material/getting-started/templates/sign-up/SignUp.tsx
 
@@ -119,9 +118,6 @@ export default function SignUp() {
                         <Grid container justifyContent="flex-end">
                             <Grid item>
                                 <Link href="#" variant="body2">
-                                    {/* <NavLink href="Signout">
-                                        
-                                    </NavLink> */}
                                     Already have an account? Sign in
                                 </Link>
                             </Grid>
