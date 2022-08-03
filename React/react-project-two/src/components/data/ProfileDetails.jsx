@@ -14,22 +14,22 @@ export const ProfileDetails = () => {
       <ul className="list-group list-group-flush" id="profile-details">
         <li class = "list-group-item" >
           <h6 id="profile-item">first name</h6>
-          <h5>{profile.firstName}</h5>
+          <h6>{profile.firstName}</h6>
            
            </li>
         <li class = "list-group-item" >
           <h6 id="profile-item">last name</h6>
-          <h5>{profile.lastName}</h5>
+          <h6>{profile.lastName}</h6>
           
           </li>
         <li class = "list-group-item" >
           <h6 id="profile-item">username</h6>
-          <h5>{profile.username}</h5></li>
+          <h6>{profile.username}</h6></li>
         <li class = "list-group-item" >
           <h6 id="profile-item">
             email
           </h6>
-          <h5>{profile.email}</h5> </li>
+          <h6>{profile.email}</h6> </li>
       </ul>
       
 
