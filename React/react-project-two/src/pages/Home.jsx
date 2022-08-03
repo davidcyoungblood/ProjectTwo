@@ -29,7 +29,7 @@ export const Home = () => {
           {/* Hero unit */}
           <Container sx={{ py: 8 }} maxWidth="md">
             {/* End hero unit */}
-            <Grid container spacing={5}>
+            <Grid container spacing={2}>
               {cards.map((card) => (
                 <Grid item key={card} xs={12} sm={6} md={4}>
                   <Card
