@@ -5,7 +5,7 @@ export const ViewAccount = () => {
   return (
     <>
       <NavBar />
-      <Container />
+      <Container/>
       </>
   );
 };

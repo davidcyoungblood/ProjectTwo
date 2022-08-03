@@ -30,9 +30,7 @@ export const PlanDetails = () => {
         <h1>{plan.price}</h1>
         </li>
         </ul>
-      
-
-      <button type="button" className="btn btn-danger">
+      <button type="button" className="btn btn-danger" id="plan-button">
         Cancel Subscription
       </button>
     </div>

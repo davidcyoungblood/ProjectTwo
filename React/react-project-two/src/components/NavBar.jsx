@@ -9,7 +9,7 @@ export const NavBar = () => {
     <>
     <Logo />
     <Navbar id="navbar" sticky="top" >
-      <Container id="nav-content">
+      <Container >
         <NavLink as={Link} to="/home">Home</NavLink>
         <NavLink as={Link} to="/viewaccount">View Account</NavLink>
         <NavLink as={Link} to="/">Sign Out</NavLink>
