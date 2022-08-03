@@ -21,7 +21,7 @@ const theme = createTheme();
 
 export const Home = () => {
   return (
-    <>
+    <div className='App'>
       <NavBar />
       <ThemeProvider theme={theme}>
         <CssBaseline />
@@ -74,6 +74,6 @@ export const Home = () => {
         </Box>
         {/* End footer */}
       </ThemeProvider>
-    </>
+    </div>
   );
 }

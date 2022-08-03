@@ -1,19 +1,23 @@
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
-import NavLink from "react-bootstrap/esm/NavLink";
+import Nav from "react-bootstrap/esm/Nav";
 import { Link } from "react-router-dom";
 import { Logo } from "./Logo";
 
 export const NavBar = () => {
   return (
     <>
-    <Logo />
-    <Navbar id="navbar" sticky="top" >
-      <Container >
-        <NavLink as={Link} to="/home">Home</NavLink>
-        <NavLink as={Link} to="/viewaccount">View Account</NavLink>
-        <NavLink as={Link} to="/">Sign Out</NavLink>
-      </Container>
+    
+    <Navbar className="navbar" sticky="top" >
+        <Logo />
+        <Container id="nav-content" fluid>
+        <Nav.Link as={Link} to="/home"id = "nav-title"><h5 >Home</h5></Nav.Link>
+        <Nav.Link as={Link} to="/viewaccount" id = "nav-title"><h5>View Account</h5></Nav.Link>
+        <Nav.Link as={Link} to="/"id = "nav-title"><h5>Sign Out</h5></Nav.Link>
+        </Container>
+        
+        
+        
     </Navbar>
     </>
   )
