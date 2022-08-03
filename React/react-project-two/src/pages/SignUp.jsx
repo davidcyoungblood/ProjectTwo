@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -7,18 +6,19 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import ThunderstormTwoToneIcon from '@mui/icons-material/ThunderstormTwoTone';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Copyright } from './Copyright';
+import { Copyright } from '../components/Copyright';
+import { ThunderstormIcon } from '../components';
+import { Link as LinkReactRouterDom } from 'react-router-dom';
 
 // https://github.com/mui/material-ui/blob/v5.9.2/docs/data/material/getting-started/templates/sign-up/SignUp.tsx
 
 const theme = createTheme();
 
-export default function SignUp() {
+export const SignUp = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -40,9 +40,8 @@ export default function SignUp() {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: '#4A738C' }}>
-                        <ThunderstormTwoToneIcon />
-                    </Avatar>
+                    <ThunderstormIcon />
+
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
@@ -113,12 +112,13 @@ export default function SignUp() {
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
                         >
-                            Sign Up
+                            {/* right now this will route to home until CREATE funtionality is implemented with axios */}
+                            <LinkReactRouterDom style={{ color: 'white', textDecoration: 'none' }} to='/home'>Sign Up</LinkReactRouterDom>
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link href="#" variant="body2">
-                                    Already have an account? Sign in
+                                <Link variant="body2">
+                                    <LinkReactRouterDom style={{ textDecoration: 'none' }} to='/signin'>Already have an account? Sign in</LinkReactRouterDom>
                                 </Link>
                             </Grid>
                         </Grid>

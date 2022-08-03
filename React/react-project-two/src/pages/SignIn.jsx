@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -8,18 +7,19 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import ThunderstormTwoToneIcon from '@mui/icons-material/ThunderstormTwoTone';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Copyright } from './Copyright';
-import { NavLink } from 'react-router-dom';
+import { Copyright } from '../components/Copyright';
+import { ThunderstormIcon } from '../components';
+import { Link as LinkReactRouterDom } from 'react-router-dom';
+
 
 // https://github.com/mui/material-ui/blob/v5.9.2/docs/data/material/getting-started/templates/sign-in/SignIn.js
 
 const theme = createTheme();
 
-export default function SignIn() {
+export const SignIn = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -41,9 +41,8 @@ export default function SignIn() {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: '#4A738C' }}>
-                        <ThunderstormTwoToneIcon />
-                    </Avatar>
+                    <ThunderstormIcon />
+
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
@@ -72,25 +71,14 @@ export default function SignIn() {
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
                         />
-                        {/** <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            Sign In
-                        </Button>*/}
-                        <NavLink as={Link} to="/home" >
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
                         >
-                            Sign In
+                            <LinkReactRouterDom style={{ color: 'white', textDecoration: 'none' }} to='/home'>Sign In</LinkReactRouterDom>
                         </Button>
-                        </NavLink>
-                        
                         <Grid container>
                             <Grid item xs>
                                 <Link href="#" variant="body2">
@@ -98,8 +86,8 @@ export default function SignIn() {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
+                                <Link variant="body2">
+                                    <LinkReactRouterDom style={{ textDecoration: 'none' }} to='/signup'>"Don't have an account? Sign Up"</LinkReactRouterDom>
                                 </Link>
                             </Grid>
                         </Grid>
