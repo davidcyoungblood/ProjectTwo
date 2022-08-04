@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.beans.Profile;
+import com.skillstorm.beans.ServicePlan;
 import com.skillstorm.repositories.ProfileRepository;
+import com.skillstorm.repositories.ServicePlanRepository;
 
 @RestController
 @RequestMapping("/profiles")
@@ -25,6 +27,9 @@ public class ProfileController {
 
 	@Autowired
 	private ProfileRepository repository;
+	
+	@Autowired
+	private ServicePlanRepository repo2; 
 
 	@GetMapping() // GET METHOD
 	public List<Profile> getProfiles() {
@@ -32,18 +37,27 @@ public class ProfileController {
 		// Maybe you want to log some information to a logger 'log.debug'
 		return repository.findAll();
 	}
+	
+	@GetMapping("/{id}")
+	public Optional<Profile> findById(@PathVariable int id) {
+		return repository.findById(id);
+	}
 
 	@PostMapping
 	@Transactional
 	public ResponseEntity<Profile> save(@RequestBody Profile profile) {
+		if(profile.getServicePlanId() == null) {
+			ServicePlan plan = repo2.findById(1).get(); 
+			profile.setServicePlanId(plan);
+		}
+		
 		return new ResponseEntity<>(repository.save(profile), HttpStatus.CREATED); 
 	}
 	
-	// Update findby id
-	@GetMapping("/{id}")
-	public Optional<Profile> findById(@PathVariable int id) {
-		return repository.findById(id); 
-		
-	}
+	//PUT update info
+	//@PutMapping
+	
+	
+	
 
 }

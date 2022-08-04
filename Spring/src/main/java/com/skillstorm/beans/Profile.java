@@ -65,15 +65,19 @@ public class Profile {
 	}
 	
 	
-	
+	public Profile(int id, String firstName, String lastName, String username, String email, String password) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+	}
 
 	public int getId() {
 		return id;
 	}
-
-	
-
-	
 
 	public void setId(int id) {
 		this.id = id;
@@ -134,5 +138,13 @@ public class Profile {
 	public void setBillingInformation(List<BillingInformation> billingInformation) {
 		this.billingInformation = billingInformation;
 	}
+
+	@Override
+	public String toString() {
+		return "Profile [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
+				+ ", email=" + email + ", password=" + password + ", servicePlanId=" + servicePlanId + "]";
+	}
+	
+	
 
 }
