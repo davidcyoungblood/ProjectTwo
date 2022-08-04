@@ -18,7 +18,7 @@ public class Status {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="StatusId")
+	@Column(name = "StatusId")
 	private int id;
 
 	@Column(name = "Name")
@@ -27,7 +27,7 @@ public class Status {
 	// this side of the relationship is JsonIgnored, serialized in ServicePlan
 	@OneToMany(mappedBy = "statusId")
 	@JsonIgnore
-	private List<ServicePlan> statusServicePlan;
+	private List<Profile> statusProfile;
 
 	public int getId() {
 		return id;
@@ -45,14 +45,12 @@ public class Status {
 		this.name = name;
 	}
 
-	public List<ServicePlan> getStatusServicePlan() {
-		return statusServicePlan;
+	public List<Profile> getStatusProfile() {
+		return statusProfile;
 	}
 
-	public void setStatusServicePlan(List<ServicePlan> statusServicePlan) {
-		this.statusServicePlan = statusServicePlan;
+	public void setStatusProfile(List<Profile> statusProfile) {
+		this.statusProfile = statusProfile;
 	}
-
-	
 
 }

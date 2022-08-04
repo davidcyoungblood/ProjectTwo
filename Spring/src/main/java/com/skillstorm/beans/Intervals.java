@@ -18,7 +18,7 @@ public class Intervals {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="IntervalsId")
+	@Column(name = "IntervalsId")
 	private int id;
 
 	@Column(name = "Name")
@@ -30,7 +30,7 @@ public class Intervals {
 	// this side of the relationship is JsonIgnored, serialized in ServicePlan
 	@OneToMany(mappedBy = "intervalId")
 	@JsonIgnore
-	private List<ServicePlan> intervalServicePlan;
+	private List<Profile> intervalProfile;
 
 	public Intervals() {
 		super();
@@ -66,14 +66,12 @@ public class Intervals {
 		this.duration = duration;
 	}
 
-	public List<ServicePlan> getIntervalServicePlan() {
-		return intervalServicePlan;
+	public List<Profile> getIntervalProfile() {
+		return intervalProfile;
 	}
 
-	public void setIntervalServicePlan(List<ServicePlan> intervalServicePlan) {
-		this.intervalServicePlan = intervalServicePlan;
+	public void setIntervalProfile(List<Profile> intervalProfile) {
+		this.intervalProfile = intervalProfile;
 	}
-
-	
 
 }

@@ -38,6 +38,15 @@ public class Profile {
 	@Column(name = "Password")
 	private String password;
 
+	@Column(name = "StartDate")
+	private String startDate;
+
+	@Column(name = "NextBillDate")
+	private String nextBillDate;
+
+	@Column(name = "EndDate")
+	private String endDate;
+
 	// this side of the relationship is serialized, ignoring in ServicePlan
 	@ManyToOne
 	@JoinColumn(name = "ServicePlanId")
@@ -50,28 +59,47 @@ public class Profile {
 	@JsonIgnore
 	private List<BillingInformation> billingInformation;
 
+	// this side of the relationship is serialized, ignoring in Status
+	@ManyToOne
+	@JoinColumn(name = "StatusId")
+	private Status statusId;
+
+	// this side of the relationship is serialized, ignoring in Intervals
+	@ManyToOne
+	@JoinColumn(name = "IntervalsId")
+	private Intervals intervalId;
+
 	public Profile() {
 		super();
 	}
 
-	public Profile(String firstName, String lastName, String username, String email, String password,
-			ServicePlan servicePlanId) {
+	public Profile(String firstName, String lastName, String username, String email, String password, String startDate,
+			String nextBillDate, String endDate, ServicePlan servicePlanId, Status statusId, Intervals intervalId) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
 		this.email = email;
 		this.password = password;
+		this.startDate = startDate;
+		this.nextBillDate = nextBillDate;
+		this.endDate = endDate;
 		this.servicePlanId = servicePlanId;
+		this.statusId = statusId;
+		this.intervalId = intervalId;
 	}
 
-	public Profile(String firstName, String lastName, String username, String email, String password) {
+	public Profile(String firstName, String lastName, String username, String email, String password, String startDate,
+			String nextBillDate, String endDate) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
 		this.email = email;
 		this.password = password;
+		this.startDate = startDate;
+		this.nextBillDate = nextBillDate;
+		this.endDate = endDate;
 	}
 
 	public int getId() {
@@ -122,6 +150,30 @@ public class Profile {
 		this.password = password;
 	}
 
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getNextBillDate() {
+		return nextBillDate;
+	}
+
+	public void setNextBillDate(String nextBillDate) {
+		this.nextBillDate = nextBillDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
 	public ServicePlan getServicePlanId() {
 		return servicePlanId;
 	}
@@ -138,10 +190,20 @@ public class Profile {
 		this.billingInformation = billingInformation;
 	}
 
-	@Override
-	public String toString() {
-		return "Profile [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", email=" + email + ", password=" + password + ", servicePlanId=" + servicePlanId + "]";
+	public Status getStatusId() {
+		return statusId;
+	}
+
+	public void setStatusId(Status statusId) {
+		this.statusId = statusId;
+	}
+
+	public Intervals getIntervalId() {
+		return intervalId;
+	}
+
+	public void setIntervalId(Intervals intervalId) {
+		this.intervalId = intervalId;
 	}
 
 }
