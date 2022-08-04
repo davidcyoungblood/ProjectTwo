@@ -2,7 +2,6 @@ package com.skillstorm.beans;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -40,11 +38,13 @@ public class Profile {
 	@Column(name = "Password")
 	private String password;
 
+	// this side of the relationship is serialized, ignoring in ServicePlan
 	@ManyToOne
 	@JoinColumn(name = "ServicePlanId")
-	@JsonIgnore
 	private ServicePlan servicePlanId;
 
+	// this side of the relationship is JsonIgnored, serialized in
+	// BillingInformation
 	@OneToMany(mappedBy = "profileId")
 	@JsonIgnore
 	private List<BillingInformation> billingInformation;
@@ -62,17 +62,6 @@ public class Profile {
 		this.email = email;
 		this.password = password;
 		this.servicePlanId = servicePlanId;
-	}
-	
-	
-	public Profile(int id, String firstName, String lastName, String username, String email, String password) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.username = username;
-		this.email = email;
-		this.password = password;
 	}
 
 	public int getId() {
@@ -144,7 +133,5 @@ public class Profile {
 		return "Profile [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
 				+ ", email=" + email + ", password=" + password + ", servicePlanId=" + servicePlanId + "]";
 	}
-	
-	
 
 }

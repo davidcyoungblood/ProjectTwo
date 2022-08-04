@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Copyright } from '../components';
+import { Copyright, Pricing } from '../components';
 import { NavBar } from "../components/NavBar";
 
 // https://github.com/mui/material-ui/tree/v5.9.3/docs/data/material/getting-started/templates/album
@@ -21,8 +21,10 @@ const theme = createTheme();
 
 export const Home = () => {
   return (
+
     <div className='App'>
       <NavBar />
+      <Pricing />
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <main>

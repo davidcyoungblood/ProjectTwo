@@ -24,6 +24,7 @@ public class Status {
 	@Column(name = "Name")
 	private String name;
 
+	// this side of the relationship is JsonIgnored, serialized in ServicePlan
 	@OneToMany(mappedBy = "statusId")
 	@JsonIgnore
 	private List<ServicePlan> statusServicePlan;

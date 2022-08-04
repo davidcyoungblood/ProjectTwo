@@ -23,9 +23,9 @@ public class BillingInformation {
 	@Column(name = "BilledOnDate")
 	private String billedOnDate;
 	
+	// this side of the relationship is serialized, ignoring in Profile
 	@ManyToOne
 	@JoinColumn(name = "billingInformation")
-	@JsonIgnore
 	private Profile profileId;
 
 	public String getId() {

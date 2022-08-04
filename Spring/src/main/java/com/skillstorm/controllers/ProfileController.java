@@ -27,17 +27,16 @@ public class ProfileController {
 
 	@Autowired
 	private ProfileRepository repository;
-	
+
 	@Autowired
-	private ServicePlanRepository repo2; 
+	private ServicePlanRepository repo2;
 
 	@GetMapping() // GET METHOD
 	public List<Profile> getProfiles() {
-		// Here we can add custom response codes using @ApiResponse
-		// Maybe you want to log some information to a logger 'log.debug'
+		System.out.println(repository.findAll());
 		return repository.findAll();
 	}
-	
+
 	@GetMapping("/{id}")
 	public Optional<Profile> findById(@PathVariable int id) {
 		return repository.findById(id);
@@ -46,18 +45,15 @@ public class ProfileController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity<Profile> save(@RequestBody Profile profile) {
-		if(profile.getServicePlanId() == null) {
-			ServicePlan plan = repo2.findById(1).get(); 
-			profile.setServicePlanId(plan);
-		}
-		
-		return new ResponseEntity<>(repository.save(profile), HttpStatus.CREATED); 
+//		if (profile.getServicePlanId() == null) {
+//			ServicePlan plan = repo2.findById(1).get();
+//			profile.setServicePlanId(plan);
+//		}
+
+		return new ResponseEntity<>(repository.save(profile), HttpStatus.CREATED);
 	}
-	
-	//PUT update info
-	//@PutMapping
-	
-	
-	
+
+	// PUT update info
+	// @PutMapping
 
 }

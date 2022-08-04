@@ -27,6 +27,7 @@ public class Intervals {
 	@Column(name = "Duration")
 	private String duration;
 
+	// this side of the relationship is JsonIgnored, serialized in ServicePlan
 	@OneToMany(mappedBy = "intervalId")
 	@JsonIgnore
 	private List<ServicePlan> intervalServicePlan;

@@ -38,16 +38,17 @@ public class ServicePlan {
 	@Column(name = "Price")
 	private String price;
 
+	// this side of the relationship is serialized, ignoring in Status
 	@ManyToOne
 	@JoinColumn(name = "StatusId")
-	@JsonIgnore
 	private Status statusId;
 
+	// this side of the relationship is serialized, ignoring in Intervals
 	@ManyToOne
 	@JoinColumn(name = "IntervalsId")
-	@JsonIgnore
 	private Intervals intervalId;
 
+	// this side of the relationship is JsonIgnored, serialized in Profile
 	@OneToMany(mappedBy = "servicePlanId")
 	@JsonIgnore
 	private List<Profile> profile;
@@ -139,7 +140,5 @@ public class ServicePlan {
 	public void setProfile(List<Profile> profile) {
 		this.profile = profile;
 	}
-
-	
 
 }
