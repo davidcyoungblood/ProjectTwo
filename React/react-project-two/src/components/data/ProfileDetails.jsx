@@ -5,7 +5,7 @@ export const ProfileDetails = () => {
   const [profile, setProfiles] = useState([]); 
   useEffect(() => {
     axios
-      .get(`http://localhost:8090/profiles/11`/*, {data : profile.id}*/)
+      .get(`http://localhost:8090/profiles/1`/*, {data : profile.id}*/)
       .then((res) => setProfiles(res.data));
   }, []);
   return (

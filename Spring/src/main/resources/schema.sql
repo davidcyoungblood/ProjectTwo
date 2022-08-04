@@ -38,7 +38,7 @@ create table Status (
 create table BillingInformation (
 	BillingInformationId INT NOT NULL AUTO_INCREMENT,
 	BilledOnDate VARCHAR(50),
-    ProfileId INT NOT NULL,
+    ProfileId INT,
     CONSTRAINT PKBillingInformationId PRIMARY KEY (BillingInformationId)
 );
 
@@ -56,6 +56,6 @@ ALTER TABLE Profile ADD CONSTRAINT ProfileFKIntervalsId
 FOREIGN KEY (IntervalsId) REFERENCES Intervals(IntervalsId) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE BillingInformation ADD CONSTRAINT BillingInformationFKProfileId
-FOREIGN KEY (ProfileId) REFERENCES Profile(ProfileId) ON DELETE NO ACTION ON UPDATE NO ACTION;
+FOREIGN KEY (ProfileId) REFERENCES Profile(ProfileId) ON DELETE SET NULL;
 
 
