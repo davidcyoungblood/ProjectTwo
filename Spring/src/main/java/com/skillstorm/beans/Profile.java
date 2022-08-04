@@ -41,6 +41,7 @@ public class Profile {
 	// this side of the relationship is serialized, ignoring in ServicePlan
 	@ManyToOne
 	@JoinColumn(name = "ServicePlanId")
+
 	private ServicePlan servicePlanId;
 
 	// this side of the relationship is JsonIgnored, serialized in
@@ -62,6 +63,15 @@ public class Profile {
 		this.email = email;
 		this.password = password;
 		this.servicePlanId = servicePlanId;
+	}
+
+	public Profile(String firstName, String lastName, String username, String email, String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.email = email;
+		this.password = password;
 	}
 
 	public int getId() {

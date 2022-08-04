@@ -45,10 +45,10 @@ public class ProfileController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity<Profile> save(@RequestBody Profile profile) {
-//		if (profile.getServicePlanId() == null) {
-//			ServicePlan plan = repo2.findById(1).get();
-//			profile.setServicePlanId(plan);
-//		}
+		if (profile.getServicePlanId() == null) {
+			ServicePlan plan = repo2.findById(1).get();
+			profile.setServicePlanId(plan);
+		}
 
 		return new ResponseEntity<>(repository.save(profile), HttpStatus.CREATED);
 	}
