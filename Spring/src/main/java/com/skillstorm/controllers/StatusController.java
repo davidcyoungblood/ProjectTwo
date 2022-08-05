@@ -30,7 +30,7 @@ public class StatusController {
 		return repository.findAll(); 
 	}
 	
-	@GetMapping("{/id}")
+	@GetMapping("/{id}")
 	public Optional<Status> findById(@PathVariable int id) {
 		return repository.findById(id); 
 	}

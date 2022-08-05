@@ -31,7 +31,7 @@ public class IntervalController {
 		return repository.findAll(); 
 	}
 	
-	@GetMapping("{/id}")
+	@GetMapping("/{id}")
 	public Optional<Intervals> findById(@PathVariable int id) {
 		return repository.findById(id); 
 	}

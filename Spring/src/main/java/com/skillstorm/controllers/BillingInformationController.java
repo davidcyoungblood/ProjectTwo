@@ -31,7 +31,7 @@ public class BillingInformationController {
 		return repository.findAll(); 
 	}
 	
-	@GetMapping("{/id}")
+	@GetMapping("/{id}")
 	public Optional<BillingInformation> findById(@PathVariable int id) {
 		return repository.findById(id); 
 	}
