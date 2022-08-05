@@ -40,7 +40,6 @@ public class ProfileController {
 
 	@GetMapping() // GET METHOD
 	public List<Profile> getProfiles() {
-		System.out.println(repository.findAll());
 		return repository.findAll();
 	}
 
@@ -77,8 +76,6 @@ public class ProfileController {
 	//axios call from ProfileDetails
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable int id) {
-		//test
-		//
 		repository.deleteById(id); 
 		return ResponseEntity.noContent().header("Custom-header", "abcde").build(); 
 	}

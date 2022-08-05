@@ -18,7 +18,7 @@ public class BillingInformation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="BillingInformationId")
-	private String id;
+	private int id;
 
 	@Column(name = "BilledOnDate")
 	private String billedOnDate;
@@ -28,11 +28,11 @@ public class BillingInformation {
 	@JoinColumn(name = "billingInformation")
 	private Profile profileId;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
