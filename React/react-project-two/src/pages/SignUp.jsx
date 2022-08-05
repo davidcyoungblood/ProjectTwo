@@ -12,20 +12,40 @@ import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Copyright } from '../components/Copyright';
 import { ThunderstormIcon } from '../components';
-import { Link as LinkReactRouterDom } from 'react-router-dom';
+import { Link as LinkReactRouterDom, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 // https://github.com/mui/material-ui/blob/v5.9.2/docs/data/material/getting-started/templates/sign-up/SignUp.tsx
 
 const theme = createTheme();
 
 export const SignUp = () => {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+    const navigate = useNavigate(); 
+
+    const navigateToSignIn = () => {
+        navigate('/signin');
+    };
+
+    const handleSubmit = async (event) => {
+        try {
+            event.preventDefault();
+            const data = new FormData(event.currentTarget);
+            // extract data from form and send POST request
+            await axios.post(
+                `http://localhost:8090/profiles`,
+                {
+                    firstName: data.get('firstName'),
+                    lastName: data.get('lastName'),
+                    username: data.get('username'),
+                    email: data.get('email'),
+                    password: data.get('password')
+                }
+            );
+            navigateToSignIn();
+        }
+        catch (e) {
+            console.error(e);
+        }
     };
 
     return (
@@ -111,9 +131,9 @@ export const SignUp = () => {
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
+
                         >
-                            {/* right now this will route to home until CREATE funtionality is implemented with axios */}
-                            <LinkReactRouterDom style={{ color: 'white', textDecoration: 'none' }} to='/home'>Sign Up</LinkReactRouterDom>
+                            Sign Up
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>

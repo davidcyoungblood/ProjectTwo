@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,10 +17,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skillstorm.beans.Intervals;
 import com.skillstorm.beans.Profile;
+import com.skillstorm.beans.ServicePlan;
+import com.skillstorm.beans.Status;
 import com.skillstorm.repositories.BillingInfoRepository;
+import com.skillstorm.repositories.IntervalRepository;
 import com.skillstorm.repositories.ProfileRepository;
 import com.skillstorm.repositories.ServicePlanRepository;
+import com.skillstorm.repositories.StatusRepository;
 
 @RestController
 @RequestMapping("/profiles")
@@ -29,56 +33,72 @@ import com.skillstorm.repositories.ServicePlanRepository;
 public class ProfileController {
 
 	@Autowired
-	private ProfileRepository repository;
+	private ProfileRepository profileRepository;
 
 	@Autowired
-	private ServicePlanRepository repo2;
-	
-	//test
+	private ServicePlanRepository servicePlanRepository;
+
 	@Autowired
-	private BillingInfoRepository repo3;
+	private StatusRepository statusRepository;
+
+	@Autowired
+	private IntervalRepository intervalRepository;
+
+	// test
+	@Autowired
+	private BillingInfoRepository billingInfoRepository;
 
 	@GetMapping() // GET METHOD
 	public List<Profile> getProfiles() {
-		return repository.findAll();
+		return profileRepository.findAll();
 	}
 
 	@GetMapping("/{id}")
 	public Optional<Profile> findById(@PathVariable int id) {
-		return repository.findById(id);
+		return profileRepository.findById(id);
+	}
+
+	@GetMapping("/{email}/{password}")
+	public Optional<Profile> getProfileByEmailAndPassword(@PathVariable String email, @PathVariable String password) {
+		return profileRepository.findById(profileRepository.findIdByEmailAndPassword(email, password));
 	}
 
 	@PostMapping
 	@Transactional
 	public ResponseEntity<Profile> save(@RequestBody Profile profile) {
-//		ServicePlan plan = repo2.findById(1).get();
-//		if (profile.getServicePlanId() == null) {
-//			ServicePlan plan = repo2.findById(1).get();
-//			profile.setServicePlanId(plan);
-//		}
+		// DEFAULT PROFILE SETTINGS
+		Optional<ServicePlan> plan = servicePlanRepository.findById(1);
+		Optional<Status> status = statusRepository.findById(1);
+		Optional<Intervals> interval = intervalRepository.findById(1);
 
-		return new ResponseEntity<>(repository.save(profile), HttpStatus.CREATED);
+		if (plan.isPresent() && status.isPresent() && interval.isPresent()) {
+			profile.setServicePlanId(plan.get());
+			profile.setStatusId(status.get());
+			profile.setIntervalId(interval.get());
+		}
+
+		return new ResponseEntity<>(profileRepository.save(profile), HttpStatus.CREATED);
 	}
 
-	// PUT update info
+//	 PUT update info
 	@PutMapping("/{id}")
 	@Transactional
 	public Profile update(@RequestBody Profile profile, @PathVariable int id) {
-		if(repository.existsById(id)) {
-			profile.setId(id); 
-			return repository.save(profile);
+		if (profileRepository.existsById(id)) {
+			profile.setId(id);
+			return profileRepository.save(profile);
+		} else {
+			throw new IllegalArgumentException("Id doesn't exist");
 		}
-		else {
-			throw new IllegalArgumentException("Id doesn't exist"); 
-		}
-		
+
 	}
-	//axios call from ProfileDetails
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable int id) {
-		repository.deleteById(id); 
-		return ResponseEntity.noContent().header("Custom-header", "abcde").build(); 
+		// test
+		//
+		profileRepository.deleteById(id);
+		return ResponseEntity.noContent().header("Custom-header", "abcde").build();
 	}
-	
 
 }

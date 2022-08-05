@@ -13,17 +13,37 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Copyright } from '../components';
+import { CardContainer, Copyright } from '../components';
 import { ThunderstormIcon } from '../components';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 // https://github.com/mui/material-ui/tree/v5.9.3/docs/data/material/getting-started/templates/album
 
-const cards = [1, 2, 3, 4, 5, 6];
-
-const theme = createTheme();
-
 export const Welcome = () => {
+  const theme = createTheme();
+
+  const cardSet1 = [1, 2, 3, 4];
+  const cardSet2 = [1, 2, 3, 4];
+  const cardSet3 = [1, 2, 3, 4];
+
+  const [servicePlans, setServicePlans] = useState([]);
+  const [statuses, setStatuses] = useState([]);
+  const [intervals, setIntervals] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:8090/plan`)
+      .then(response => setServicePlans(response.data));
+
+      axios.get(`http://localhost:8090/status`)
+      .then(response => setStatuses(response.data));
+
+      axios.get(`http://localhost:8090/interval`)
+      .then(response => setIntervals(response.data));
+  }, []);
+
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -67,40 +87,12 @@ export const Welcome = () => {
               <Button variant="outlined"><Link style={{ color: 'black', textDecoration: 'none' }} to='/signin'>Sign In</Link></Button>
             </Stack>
           </Container>
-        </Box>
-        <Container sx={{ py: 8 }} maxWidth="md">
-          {/* End hero unit */}
-          <Grid container spacing={5}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                >
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      // 16:9
-                      pt: '5%',
-                    }}
-                    image="https://source.unsplash.com/random"
-                    alt="random"
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Service
-                    </Typography>
-                    <Typography>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada fames ac turpis egestas sed.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">View</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
+        </Box>        
+
+        <CardContainer image="https://source.unsplash.com/random/400" cards={cardSet1} heading={"Service plans"} description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit."} />
+        <CardContainer image="https://source.unsplash.com/random/405" cards={cardSet2} heading={"Statuses"} description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit et dolore magna aliqua. Malesuada fames ac turpis egestas sed."} />
+        <CardContainer image="https://source.unsplash.com/random/410" cards={cardSet3} heading={"Intervals"} description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempt labore et dolore magna sed."} />
+
       </main>
       {/* Footer */}
       <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">

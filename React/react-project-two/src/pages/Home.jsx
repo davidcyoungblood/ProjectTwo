@@ -12,6 +12,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Copyright, Pricing } from '../components';
 import { NavBar } from "../components/NavBar";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 // https://github.com/mui/material-ui/tree/v5.9.3/docs/data/material/getting-started/templates/album
 
@@ -19,7 +21,24 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 const theme = createTheme();
 
-export const Home = () => {
+export const Home = (props) => {
+  const [profile, setProfile] = useState([]);
+  const [servicePlanUpdated, setExpenseUpdated] = useState(false);
+  const [statusUpdated, setStatusUpdated] = useState(false);
+  const [intervaleUpdated, setIntervaleUpdated] = useState(false);
+
+
+  useEffect(() => {
+    // axios.get(`http://localhost:8090/profiles/${props.id}`)
+    axios.get(`http://localhost:8090/profiles/1`)
+      .then(response => setProfile(response.data));
+  }, []);
+
+
+
+
+
+
   return (
 
     <div className='App'>
@@ -33,7 +52,7 @@ export const Home = () => {
             {/* End hero unit */}
             <Grid container spacing={2}>
               {cards.map((card) => (
-                <Grid item key={card} xs={12} sm={6} md={4}>
+                <Grid item key={card} xs={12} sm={6} md={3}>
                   <Card
                     sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                   >
