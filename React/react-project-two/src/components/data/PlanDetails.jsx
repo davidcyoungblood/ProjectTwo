@@ -6,13 +6,13 @@ export const PlanDetails = () => {
   const[plan, setPlans] = useState([]);
   useEffect(() => {
       axios
-      .get(`http://localhost:8090/profiles/1`/*, {data : profile.id}*/)
+      .get(`http://localhost:8090/profiles/1`/*, {params : profile.id}*/)
       .then((res) => setProfiles(res.data));
   }, []);
   
   useEffect(() => {
     axios
-    .get(`http://localhost:8090/plan/1`/*, {data : profile.id}*/)
+    .get(`http://localhost:8090/plan/1`/*, {params : profile.statusId}*/)
     .then((res) => setPlans(res.data));
 }, []);
 

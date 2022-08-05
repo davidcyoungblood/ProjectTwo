@@ -24,33 +24,38 @@ import com.skillstorm.repositories.BillingInfoRepository;
 @CrossOrigin(origins = "*")
 public class BillingInformationController {
 	@Autowired
-	private BillingInfoRepository repository; 
-	
+	private BillingInfoRepository repository;
+
 	@GetMapping()
-	public List<BillingInformation> getStatuses() {
-		return repository.findAll(); 
+	public List<BillingInformation> getBillingInfo() {
+		return repository.findAll();
 	}
-	
+
+	/*
+	 * @GetMapping("/{id}") public Optional<BillingInformation>
+	 * findById(@PathVariable int id) { return repository.findById(id); }
+	 */
+
 	@GetMapping("/{id}")
-	public Optional<BillingInformation> findById(@PathVariable int id) {
-		return repository.findById(id); 
+	public List<BillingInformation> findByProfile(@PathVariable int id) {
+		return repository.findByProfileId(id);
 	}
-	
+
 	@PutMapping("/{id}")
 	@Transactional
 	public BillingInformation update(@RequestBody BillingInformation billinginfo, @PathVariable int id) {
-		if(repository.existsById(id)) {
-			billinginfo.setId(id); 
+		if (repository.existsById(id)) {
+			billinginfo.setId(id);
 			return repository.save(billinginfo);
+		} else {
+			throw new IllegalArgumentException("Id doesn't exist");
 		}
-		else {
-			throw new IllegalArgumentException("Id doesn't exist"); 
-		}
-		
+
 	}
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable int id) {
-		repository.deleteById(id); 
-		return ResponseEntity.noContent().header("Custom-header", "abcde").build(); 
+		repository.deleteById(id);
+		return ResponseEntity.noContent().header("Custom-header", "abcde").build();
 	}
 }

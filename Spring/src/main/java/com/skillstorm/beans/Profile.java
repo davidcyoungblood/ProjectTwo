@@ -50,7 +50,6 @@ public class Profile {
 	// this side of the relationship is serialized, ignoring in ServicePlan
 	@ManyToOne
 	@JoinColumn(name = "ServicePlanId")
-
 	private ServicePlan servicePlanId;
 
 	// this side of the relationship is JsonIgnored, serialized in

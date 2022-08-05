@@ -9,23 +9,21 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "BillingInformation")
 public class BillingInformation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="BillingInformationId")
+	@Column(name = "BillingInformationId")
 	private int id;
 
 	@Column(name = "BilledOnDate")
 	private String billedOnDate;
-	
+
 	// this side of the relationship is serialized, ignoring in Profile
 	@ManyToOne
-	@JoinColumn(name = "billingInformation")
+	@JoinColumn(name = "ProfileId")
 	private Profile profileId;
 
 	public int getId() {

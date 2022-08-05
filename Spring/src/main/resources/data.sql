@@ -29,8 +29,8 @@ insert into Profile (FirstName, LastName, Username, Email, Password, ServicePlan
 insert into Profile (FirstName, LastName, Username, Email, Password, ServicePlanId, StartDate, NextBillDate, EndDate, StatusId, IntervalsId) values ('Lucais', 'de Castelain', 'ldecastelain9', 'ldecastelain9@devhub.com', 'YEc8XKnxyBg', 4, null,null,null,2,1);
 
 
-insert into BillingInformation (BilledOnDate, ProfileId) values (null, 1);
-insert into BillingInformation (BilledOnDate, ProfileId) values (null, 2);
+insert into BillingInformation (BilledOnDate, ProfileId) values ('01/01/2022', 1);
+insert into BillingInformation (BilledOnDate, ProfileId) values ('01/05/2022', 1);
 insert into BillingInformation (BilledOnDate, ProfileId) values (null, 3);
 insert into BillingInformation (BilledOnDate, ProfileId) values ('12/05/2021', 4);
 insert into BillingInformation (BilledOnDate, ProfileId) values ('12/05/2021', 5);

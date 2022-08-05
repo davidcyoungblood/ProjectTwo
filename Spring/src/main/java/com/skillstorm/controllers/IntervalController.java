@@ -27,7 +27,7 @@ public class IntervalController {
 	private IntervalRepository repository; 
 	
 	@GetMapping()
-	public List<Intervals> getStatuses() {
+	public List<Intervals> getIntervals() {
 		return repository.findAll(); 
 	}
 	
