@@ -35,9 +35,10 @@ export const Home = (props) => {
   //     .then(response => setProfile(response.data));
   // }, []);
 
+
   return (
     <>
-
+      
       {/* <h1>
         DATA
         {console.log("DATA", data.state.id)}

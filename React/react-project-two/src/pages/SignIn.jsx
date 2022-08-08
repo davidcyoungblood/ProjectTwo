@@ -33,7 +33,8 @@ export const SignIn = () => {
             const response = await axios.get(`http://localhost:8090/profiles/${data.get('email')}/${data.get('password')}`);
 
             //some kind of validation needs to happen right here
-
+            sessionStorage.clear()
+            sessionStorage.setItem("loggedIn", JSON.stringify(response.data));
             navigate('/home', { state: response.data });
         }
         catch (e) {
@@ -86,7 +87,7 @@ export const SignIn = () => {
                             />
                             <Button
                                 type="submit"
-                                fullWidth
+                                fullWidth="true" //edit changed to true to click anywhere on the sign in button
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                             >

@@ -36,6 +36,6 @@ insert into BillingInformation (BilledOnDate, ProfileId) values ('12/05/2021', 4
 insert into BillingInformation (BilledOnDate, ProfileId) values ('12/05/2021', 5);
 insert into BillingInformation (BilledOnDate, ProfileId) values ('12/05/2021', 6);
 insert into BillingInformation (BilledOnDate, ProfileId) values ('12/05/2021', 7);
-insert into BillingInformation (BilledOnDate, ProfileId) values ('04/25/2022', 8);
-insert into BillingInformation (BilledOnDate, ProfileId) values ('04/25/2022', 9);
-insert into BillingInformation (BilledOnDate, ProfileId) values ('02/03/2022', 10);
+insert into BillingInformation (BilledOnDate, ProfileId) values ('04/25/2022', 1);
+insert into BillingInformation (BilledOnDate, ProfileId) values ('04/25/2022', 1);
+insert into BillingInformation (BilledOnDate, ProfileId) values ('02/03/2022', 1);

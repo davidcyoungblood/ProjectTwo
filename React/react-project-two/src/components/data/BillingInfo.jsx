@@ -14,12 +14,17 @@ export const BillingInfo = () => {
     );
   };
 
+  const string = sessionStorage.getItem("loggedIn"); 
+
+  const profile = JSON.parse(string)
+
+
   
   //console.log(profile.id)
   const [billing, setBilling] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:8090/billing/1` /*,${profile.id} {params : profile.id}*/)
+      .get(`http://localhost:8090/billing/${profile.id}`  /*,${profile.id} {params : profile.id}*/)
       .then((res) => setBilling(res.data));
   }, []);
 
