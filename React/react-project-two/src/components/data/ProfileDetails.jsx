@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useRef } from "react";
 import { useState, useEffect } from "react";
+import Nav from "react-bootstrap/esm/Nav";
+import { Link } from "react-router-dom";
 
 export const ProfileDetails = () => {
   //const [profile, setProfiles] = useState([]);
@@ -46,7 +48,7 @@ export const ProfileDetails = () => {
         </label>
         <label className="list-group-item">
           <h6 id="profile-item">password</h6>
-          <input ref = {passwordRef} type="text" />
+          <input ref = {passwordRef} defaultValue={profile.password} type="text" />
         </label>
         <input type="submit" value="Commit Changes"  className="btn btn-primary" id="profile-button"/>
       </form>
@@ -86,38 +88,36 @@ export const ProfileDetails = () => {
     profile.lastName = lnRef.current.value
     profile.username = unRef.current.value
     profile.email = emailRef.current.value
-    if (passwordRef != null) {
-      profile.password = passwordRef.current.value
-    }
-    
+    profile.password = passwordRef.current.value    
 
       try {
         e.preventDefault()
         await axios.put(
-          `http://localhost:8090/profiles/${profile.id}`, 
-          {
-            //Update profile in the database wish there was a default
-             firstName:  profile.firstName, 
-             lastName: profile.lastName, 
-             username: profile.username,
-             email: profile.email,
-             password: profile.password,
-             startDate : profile.startDate,
-             nextBillDate : profile.nextBillDate,
-             endDate: profile.endDate,
-             statusId: profile.statusId,
-             intervalId: profile.intervalId,
-            servicePlanId: profile.servicePlanId
-          }
+          `http://localhost:8090/profiles/${profile.id}`, profile
         ) 
+        
         sessionStorage.removeItem("loggedIn")
 
         sessionStorage.setItem("loggedIn", JSON.stringify(profile));
+        
       } catch (error) {
         console.log(error)
       }
       setEditing(!isEditing);
   };
+
+  const deleteProfile = async(e) => {
+    try {
+      
+      await axios
+            .delete(`http://localhost:8090/profiles/${profile.id}`)
+      
+      sessionStorage.removeItem("loggedIn")
+    } catch (error) {
+      
+    }
+
+  }
 
   return (
     <div>
@@ -136,6 +136,13 @@ export const ProfileDetails = () => {
       {/* <button type="button" className="btn btn-primary" id="profile-button">
         Reset Password
       </button> */}
+      <br />
+      <Nav.Link as={Link} to="/" id = "nav-title" onClick={deleteProfile}>
+      <button type="button" className="btn btn-danger">
+      Delete
+      </button>
+      </Nav.Link>
+      
     </div>
   );
 };

@@ -6,8 +6,6 @@ export const PlanDetails = () => {
   var[plan, setPlans] = useState([]);
 
   const string = sessionStorage.getItem("loggedIn"); 
-  
-
   const profile = JSON.parse(string)
 
   plan = profile.servicePlanId; 
@@ -27,11 +25,8 @@ export const PlanDetails = () => {
 
   const handleCancel = async (e) => {
       try {
-        e.preventDefault(); 
         
-        let temp = profile; 
         let data = await axios .get(`http://localhost:8090/status/4`); 
-        temp.statusId = data.data;
         
         profile.statusId = data.data;
 
@@ -42,10 +37,6 @@ export const PlanDetails = () => {
         sessionStorage.setItem("loggedIn", JSON.stringify(profile));
 
         await axios.put(`http://localhost:8090/profiles/${profile.id}`, profile); 
-
-
-        //reloads the page
-        window.location.reload()
 
       } catch (error) {
         

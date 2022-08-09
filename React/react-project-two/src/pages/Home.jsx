@@ -17,6 +17,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { Profile } from '../components/Profile';
+import {Plans, Statuses, Intervals} from '../components/homedata'
 
 // https://github.com/mui/material-ui/tree/v5.9.3/docs/data/material/getting-started/templates/album
 
@@ -29,7 +30,11 @@ export const Home = (props) => {
   // const [servicePlanUpdated, setExpenseUpdated] = useState(false);
   // const [statusUpdated, setStatusUpdated] = useState(false);
   // const [intervaleUpdated, setIntervaleUpdated] = useState(false);
-  const data = useLocation();
+  
+  //EDIT switching between view account and home the data location is cleared
+  const string = sessionStorage.getItem("loggedIn");
+  const data = JSON.parse(string);
+  //const data = useLocation();
 
   // useEffect(() => {
   //   // axios.get(`http://localhost:8090/profiles/${data.state.id}`)
@@ -45,16 +50,19 @@ export const Home = (props) => {
 
   return (
     <div className='App'>
-      {console.log(data.state)}
-      {console.log(data.state.servicePlanId)}
-      {console.log(data.state.statusId)}
-      {console.log(data.state.intervalId)}
+      {console.log(data)}
+      {console.log(data.servicePlanId)}
+      {console.log(data.statusId)}
+      {console.log(data.intervalId)}
       <NavBar />
+      <Plans />
+      <Statuses/>
+      <Intervals/> 
       {/* <Pricing /> */}
-      <ThemeProvider theme={theme}>
+      {/* <ThemeProvider theme={theme}>
         <CssBaseline />
         <main>
-          <Profile key={data.state.id} profile={data.state} servicePlan={data.state.servicePlanId} status={data.state.statusId} interval={data.state.intervalId} />
+          <Profile key={data.id} profile={data} servicePlan={data.servicePlanId} status={data.statusId} interval={data.intervalId} />
           <Container sx={{ py: 8 }} maxWidth="md">
             <Grid container spacing={2}>
               {cards.map((card) => (
@@ -77,7 +85,7 @@ export const Home = (props) => {
                     </CardContent>
                     <CardActions>
                       <Button size="small">Switch To</Button>
-                      {/* <Button size="small">Quick Order</Button> */}
+                      {/* <Button size="small">Quick Order</Button> 
                     </CardActions>
                   </Card>
                 </Grid>
@@ -86,7 +94,7 @@ export const Home = (props) => {
           </Container>
         </main>
         <Footer />
-      </ThemeProvider>
+      </ThemeProvider> */}
     </div>
   );
 }

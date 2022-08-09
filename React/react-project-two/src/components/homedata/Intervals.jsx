@@ -9,56 +9,74 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const theme = createTheme();
 
-export const ServicePlanList = () => {
-    const [servicePlans, setServicePlans] = useState([]);
+export const Intervals = () => {
+    const [intervals, setIntervals] = useState([]);
 
-    // get all service plans
+    // get all intervals
     useEffect(() => {
-        axios.get(`http://localhost:8090/plan`)
-            .then(response => setServicePlans(response.data));
+        axios.get(`http://localhost:8090/interval`)
+            .then(response => setIntervals(response.data));
     }, []);
-  
+
+    const handleUpdate = (card) => {
+        const string = sessionStorage.getItem("loggedIn");
+
+        const profile = JSON.parse(string);
+        profile.intervalId = card; 
+
+        try {
+            axios.put(
+             `http://localhost:8090/profiles/${profile.id}`, profile
+           ) 
+           sessionStorage.removeItem("loggedIn")
+   
+           sessionStorage.setItem("loggedIn", JSON.stringify(profile));
+         } catch (error) {
+           console.log(error)
+         }
+          
+      };
+
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <main>
                 <Container sx={{ py: 8 }} maxWidth="md">
                     <Grid container spacing={4}>
-                        
-                        {/* map all service plans to a card */}
-                        {servicePlans.map((card) => (
-                            
+
+                        {/* map all intervals to a card */}
+                        {intervals.map((card) => (
                             <Grid item key={card.id} xs={12} sm={6} md={3}>
                                 <Card
                                     sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                                 >
                                     <CardMedia
                                         component="img"
-                                        image="https://source.unsplash.com/random/400"
+                                        image="https://source.unsplash.com/random/415"
                                         alt="random"
                                     />
                                     <CardContent sx={{ flexGrow: 1 }}>
                                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                                            Service Plan •
+                                            Interval •
                                             {card.id}
                                         </Typography>
                                         <Typography variant="h5" component="div">
                                             {card.name}
                                         </Typography>
-                                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                            {card.price}
+                                        <Typography sx={{ fontSize: 8 }} color="text.secondary" gutterBottom>
+                                            {card.duration} days
                                         </Typography>
                                         <Typography variant="body2">
-                                            sapien nec sagittis aliquam malesuada bibendum arcu vitae.
+                                            leo integer malesuada nunc vel risus commodo viverra
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small">Edit</Button>
+                                        <Button size="small" onClick = {async() =>handleUpdate(card)}>Update Interval</Button>
                                     </CardActions>
                                 </Card>
                             </Grid>

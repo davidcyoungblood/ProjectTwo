@@ -14,7 +14,7 @@ import axios from 'axios';
 
 const theme = createTheme();
 
-export const ServicePlanList = () => {
+export const Plans = () => {
     const [servicePlans, setServicePlans] = useState([]);
 
     // get all service plans
@@ -23,6 +23,34 @@ export const ServicePlanList = () => {
             .then(response => setServicePlans(response.data));
     }, []);
   
+    const handleUpdate = (card) => {
+        const string = sessionStorage.getItem("loggedIn");
+
+        const profile = JSON.parse(string);
+        profile.servicePlanId = card; 
+
+        //update start date
+        var today = new Date()
+
+        var date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
+
+
+        profile.startDate = date;
+
+        
+        try {
+            axios.put(
+             `http://localhost:8090/profiles/${profile.id}`, profile
+           ) 
+           sessionStorage.removeItem("loggedIn")
+   
+           sessionStorage.setItem("loggedIn", JSON.stringify(profile));
+         } catch (error) {
+           console.log(error)
+         }
+          
+      };
+    
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -58,7 +86,7 @@ export const ServicePlanList = () => {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small">Edit</Button>
+                                        <Button size="small" onClick = {async() =>handleUpdate(card)}>Update Plan</Button>
                                     </CardActions>
                                 </Card>
                             </Grid>
