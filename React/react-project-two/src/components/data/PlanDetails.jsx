@@ -43,7 +43,6 @@ export const PlanDetails = () => {
 
         await axios.put(`http://localhost:8090/profiles/${profile.id}`, profile); 
 
-        console.log(profile)
 
         //reloads the page
         window.location.reload()
