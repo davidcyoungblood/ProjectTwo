@@ -13,7 +13,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Copyright } from '../components/Copyright';
 import { ThunderstormIcon } from '../components';
 import { Link as LinkReactRouterDom, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import axios from 'axios';
 
 
@@ -22,16 +21,14 @@ import axios from 'axios';
 const theme = createTheme();
 
 export const SignIn = () => {
-    const [loggedIn, setLoggedIn] = useState(false);
     const navigate = useNavigate();
 
-    const handleSubmit = async (event, email, password) => {
+    const handleSubmit = async (event) => {
         try {
             event.preventDefault();
             const data = new FormData(event.currentTarget);
             // extract data from form and send GET request
             const response = await axios.get(`http://localhost:8090/profiles/${data.get('email')}/${data.get('password')}`);
-
             //some kind of validation needs to happen right here
             sessionStorage.clear()
             sessionStorage.setItem("loggedIn", JSON.stringify(response.data));
@@ -100,9 +97,7 @@ export const SignIn = () => {
                                     </Link>
                                 </Grid>
                                 <Grid item>
-                                    <Link variant="body2">
-                                        <LinkReactRouterDom style={{ textDecoration: 'none' }} to='/signup'>"Don't have an account? Sign Up"</LinkReactRouterDom>
-                                    </Link>
+                                    <LinkReactRouterDom variant="body2" style={{ textDecoration: 'none' }} to='/signup'>"Don't have an account? Sign Up"</LinkReactRouterDom>
                                 </Grid>
                             </Grid>
                         </Box>
