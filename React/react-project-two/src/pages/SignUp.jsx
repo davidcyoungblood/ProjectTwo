@@ -8,10 +8,8 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Copyright } from '../components/Copyright';
-import { ThunderstormIcon } from '../components';
+import { Footer, ThunderstormIcon } from '../components';
 import { Link as LinkReactRouterDom, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -138,15 +136,17 @@ export const SignUp = () => {
                             </Button>
                             <Grid container justifyContent="flex-end">
                                 <Grid item>
-                                    <Link variant="body2">
-                                        <LinkReactRouterDom style={{ textDecoration: 'none' }} to='/signin'>Already have an account? Sign in</LinkReactRouterDom>
-                                    </Link>
+
+                                    <LinkReactRouterDom variant="body2" style={{ textDecoration: 'underlined' }} to='/signin'>Already have an account? Sign in</LinkReactRouterDom>
+
                                 </Grid>
                             </Grid>
                         </Box>
                     </Box>
-                    <Copyright sx={{ mt: 5 }} />
                 </Container>
+
+                <Footer/>
+
             </ThemeProvider>
         </>
     );

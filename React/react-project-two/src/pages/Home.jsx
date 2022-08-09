@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import { Stack } from '@mui/material';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Copyright, Pricing, ServicePlanList } from '../components';
+import { Copyright, Footer, Pricing, ServicePlanList } from '../components';
 import { NavBar } from "../components/NavBar";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -54,7 +54,7 @@ export const Home = (props) => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <main>
-        <Profile key={data.state.id} profile={data.state} servicePlan={data.state.servicePlanId} status={data.state.statusId} interval={data.state.intervalId}/>
+          <Profile key={data.state.id} profile={data.state} servicePlan={data.state.servicePlanId} status={data.state.statusId} interval={data.state.intervalId} />
           <Container sx={{ py: 8 }} maxWidth="md">
             <Grid container spacing={2}>
               {cards.map((card) => (
@@ -85,19 +85,7 @@ export const Home = (props) => {
             </Grid>
           </Container>
         </main>
-        <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
-          <Typography variant="h6" align="center" gutterBottom>
-            Footer
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            align="center"
-            color="text.secondary"
-            component="p"
-          >
-            eget est lorem ipsum dolor sit amet consectetur adipiscing elit        </Typography>
-          <Copyright />
-        </Box>
+        <Footer />
       </ThemeProvider>
     </div>
   );

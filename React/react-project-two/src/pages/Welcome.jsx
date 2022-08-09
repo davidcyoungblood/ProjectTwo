@@ -8,7 +8,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Copyright, ServicePlanList, StatusList, IntervalList } from '../components';
+import { ServicePlanList, StatusList, IntervalList, Footer } from '../components';
 import { ThunderstormIcon } from '../components';
 import { Link } from 'react-router-dom';
 
@@ -61,28 +61,15 @@ export const Welcome = () => {
               </Stack>
             </Container>
           </Box>
-          
+
           <ServicePlanList />
           <StatusList />
           <IntervalList />
 
         </main>
-        {/* Footer */}
-        <Box sx={{ bgcolor: 'background.paper', p: 5 }} component="footer">
-          <Typography variant="h6" align="center" gutterBottom>
-            Footer
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            align="center"
-            color="text.secondary"
-            component="p"
-          >
-            eget est lorem ipsum dolor sit amet consectetur adipiscing elit
-          </Typography>
-          <Copyright />
-        </Box>
-        {/* End footer */}
+
+        <Footer />
+
       </ThemeProvider>
     </>
   );

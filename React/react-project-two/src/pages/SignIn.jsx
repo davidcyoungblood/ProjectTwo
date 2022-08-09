@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Copyright } from '../components/Copyright';
-import { ThunderstormIcon } from '../components';
+import { Footer, ThunderstormIcon } from '../components';
 import { Link as LinkReactRouterDom, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -84,7 +84,7 @@ export const SignIn = () => {
                             />
                             <Button
                                 type="submit"
-                                fullWidth="true" //edit changed to true to click anywhere on the sign in button
+                                fullWidth={true} //edit changed to true to click anywhere on the sign in button, cannot be string, has to be boolean
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                             >
@@ -102,8 +102,8 @@ export const SignIn = () => {
                             </Grid>
                         </Box>
                     </Box>
-                    <Copyright sx={{ mt: 8, mb: 4 }} />
                 </Container>
+                <Footer />
             </ThemeProvider>
         </>
     );
