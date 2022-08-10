@@ -8,7 +8,7 @@ create table Profile (
 	LastName VARCHAR(50),
 	Username VARCHAR(50),
 	Email VARCHAR(254),
-	Password VARCHAR(50),    
+	Password VARCHAR(254),    
     StartDate VARCHAR(50),
 	NextBillDate VARCHAR(50),
 	EndDate VARCHAR(50),

@@ -48,7 +48,7 @@ export const ProfileDetails = () => {
         </label>
         <label className="list-group-item">
           <h6 id="profile-item">password</h6>
-          <input ref = {passwordRef} defaultValue={profile.password} type="text" />
+          <input ref = {passwordRef} defaultValue={profile.password} type="password" />
         </label>
         <input type="submit" value="Commit Changes"  className="btn btn-primary" id="profile-button"/>
       </form>
@@ -123,7 +123,7 @@ export const ProfileDetails = () => {
     <div>
       <h2 id="account-titles">Profile Details</h2>
 
-      {isEditing ? handleEdit() : handleProfile()}
+     {isEditing ? handleEdit() : handleProfile()} 
 
       <button
         type="button"

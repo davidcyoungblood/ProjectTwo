@@ -3,9 +3,12 @@ package com.skillstorm.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,7 +32,8 @@ import com.skillstorm.repositories.StatusRepository;
 
 @RestController
 @RequestMapping("/profiles")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*") // Spring MVC doesn't allow CORS by default
+
 public class ProfileController {
 
 	@Autowired
@@ -47,6 +51,9 @@ public class ProfileController {
 	// test
 	@Autowired
 	private BillingInfoRepository billingInfoRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder; 
 
 	@GetMapping() // GET METHOD
 	public List<Profile> getProfiles() {
@@ -60,12 +67,24 @@ public class ProfileController {
 
 	@GetMapping("/{email}/{password}")
 	public Optional<Profile> getProfileByEmailAndPassword(@PathVariable String email, @PathVariable String password) {
-		return profileRepository.findById(profileRepository.findIdByEmailAndPassword(email, password));
+		
+		
+		Profile profile = profileRepository.findById(profileRepository.findIdByEmail(email)).get(); 
+		 
+		
+		boolean test = passwordEncoder.matches(password, profile.getPassword()); 
+		
+		return (test ? profileRepository.findById(profile.getId()) : null);
+		
 	}
 
 	@PostMapping
 	@Transactional
-	public ResponseEntity<Profile> save(@RequestBody Profile profile) {
+	public ResponseEntity<Profile> save(@Valid @RequestBody Profile profile) {
+		
+		profile.setPassword(passwordEncoder.encode(profile.getPassword()));
+		
+		
 		// DEFAULT PROFILE SETTINGS
 		Optional<ServicePlan> plan = servicePlanRepository.findById(1);
 		Optional<Status> status = statusRepository.findById(1);
@@ -74,7 +93,7 @@ public class ProfileController {
 		if (plan.isPresent() && status.isPresent() && interval.isPresent()) {
 			profile.setServicePlanId(plan.get());
 			profile.setStatusId(status.get());
-			profile.setIntervalId(interval.get());
+			profile.setIntervalId(interval.get()); 
 		}
 
 		return new ResponseEntity<>(profileRepository.save(profile), HttpStatus.CREATED);

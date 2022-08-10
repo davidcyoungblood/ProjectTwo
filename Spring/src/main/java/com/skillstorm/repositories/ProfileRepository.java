@@ -13,4 +13,8 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
 	@Query(value = "SELECT ProfileId FROM Profile p WHERE p.Email = ?1 AND p.Password = ?2", nativeQuery = true)
 	public int findIdByEmailAndPassword(String email, String password);
 
+	
+	@Query(value = "SELECT ProfileId FROM Profile p WHERE p.Email = ?1", nativeQuery = true)
+	public int findIdByEmail(String email);
+	
 }
