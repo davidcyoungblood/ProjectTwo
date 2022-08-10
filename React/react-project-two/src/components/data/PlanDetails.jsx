@@ -26,11 +26,19 @@ export const PlanDetails = () => {
   const handleCancel = async (e) => {
       try {
         
+        const string = sessionStorage.getItem("loggedIn"); 
+        const profile = JSON.parse(string)
+
         let data = await axios .get(`http://localhost:8090/status/4`); 
         
         profile.statusId = data.data;
 
-        profile.nextBillDate = '---'; 
+        //set date
+        var today = new Date()
+
+        var date =  (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear() ;
+       
+        profile.endDate = date; 
 
         sessionStorage.removeItem("loggedIn")
 
@@ -41,6 +49,8 @@ export const PlanDetails = () => {
       } catch (error) {
         
       }
+      window.location.reload();
+      
 
   }
 
@@ -59,8 +69,8 @@ export const PlanDetails = () => {
          
         </li>
         <li className = "list-group-item" id="plan-nbd">
-          <h6 id="profile-item"> Next Bill Date</h6>
-        <h4>{profile.nextBillDate}</h4>
+          <h6 id="profile-item"> End Date</h6>
+        <h4>{profile.endDate}</h4>
         </li>
         <li className = "list-group-item" id="plan-price">
           <h6 id="profile-item">Price</h6>

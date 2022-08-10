@@ -27,12 +27,15 @@ export const Plans = () => {
         const string = sessionStorage.getItem("loggedIn");
 
         const profile = JSON.parse(string);
+
+
         profile.servicePlanId = card; 
 
         //update start date
         var today = new Date()
 
-        var date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
+        var date =  (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear() ;
+
 
 
         profile.startDate = date;
