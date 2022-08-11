@@ -47,18 +47,23 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.httpBasic();
-		http
-		.cors().and()
-		.csrf().disable()
-		.authorizeRequests()
-		.antMatchers("/plan").permitAll()
-		.antMatchers("/status").permitAll()
-		.antMatchers("/interval").permitAll()
+//		http.httpBasic();
+//		http
+//		.cors().and()
+//		.csrf().disable()
+//		.authorizeRequests()
+//		.antMatchers("/plan").permitAll()
+//		.antMatchers("/status").permitAll()
+//		.antMatchers("/interval").permitAll()
 //		.antMatchers("/profiles").hasAnyRole("ADMIN")
 //		.antMatchers("/profiles/id").hasAnyRole("USER", "ADMIN")
-		.antMatchers("/**").hasAnyRole("ADMIN");
+//		.antMatchers("/**").hasAnyRole("ADMIN");
 //		.formLogin();
 //		.loginPage("/login");
+		http.csrf().disable()
+		.cors().and()
+		.authorizeRequests().antMatchers("/").hasAnyRole("ADMIN")
+		.anyRequest().authenticated().and()
+		.httpBasic();
 	}
 }

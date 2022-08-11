@@ -14,6 +14,7 @@ import { Copyright } from '../components/Copyright';
 import { Footer, ThunderstormIcon } from '../components';
 import { Link as LinkReactRouterDom, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useState } from 'react';
 
 
 // https://github.com/mui/material-ui/blob/v5.9.2/docs/data/material/getting-started/templates/sign-in/SignIn.js
@@ -22,47 +23,57 @@ const theme = createTheme();
 
 export const SignIn = () => {
     const navigate = useNavigate();
+    let authorized = false;
 
     const basicAuthorize = (data) => {
-        let username = data.get('email');
-        let password = data.get('password');
+        // let username = data.get('email');
+        let username = 'admin';
+        let password = 'admin';
 
-        fetch("http://localhost:8090/", {
+        axios.get(`http://localhost:8090/profiles/5`, {
             headers: {
-                'Content-Type':'application/json',
-                "Authorization": 'Basic ' + username + ":" + password
+                'Content-Type': 'application/json',
+                "Authorization": 'Basic ' + window.btoa(username + ":" + password)
             }
         }).then(resp => {
             console.log(resp);
             if (resp.ok) {
-                // this.setState({
-                //     isLoginSucces: true
-                // });
-                console.log("logged in")
+                authorized = true;
+                console.log("authorized")
             } else {
-                // this.setState({ isLoginSucces: false });
-                console.log("not logged in")
+                authorized = false;
+                console.log("not authorized in")
             }
 
-            // return resp.text();
             console.log(resp.text);
+            return resp.text();
+            
+            // return loggedIn;
         });
     }
-
-
-
 
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
             const data = new FormData(event.currentTarget);
-            basicAuthorize(data);
+            let a = basicAuthorize(data);
             // extract data from form and send GET request
-            const response = await axios.get(`http://localhost:8090/profiles/${data.get('email')}/${data.get('password')}`);
-            //some kind of validation needs to happen right here
-            sessionStorage.clear()
-            sessionStorage.setItem("loggedIn", JSON.stringify(response.data));
-            navigate('/home', { state: response.data });
+            if (authorized == true) {
+                const response = await axios.get(`http://localhost:8090/profiles/${data.get('email')}/${data.get('password')}`);
+                // const response = await axios.get(`http://localhost:8090/profiles/apepperell4@tripod.com/pix70r2i`);
+                //some kind of validation needs to happen right here
+                console.log(response.data);
+                sessionStorage.clear()
+                sessionStorage.setItem("loggedIn", JSON.stringify(response.data));
+                console.log(response.data);
+                navigate('/home', { state: response.data });
+            }
+            // const response = await axios.get(`http://localhost:8090/profiles/${data.get('email')}/${data.get('password')}`);
+            // //some kind of validation needs to happen right here
+            // sessionStorage.clear()
+            // sessionStorage.setItem("loggedIn", JSON.stringify(response.data));
+            // navigate('/home', { state: response.data });
+            return a;
         }
         catch (e) {
             console.error(e);

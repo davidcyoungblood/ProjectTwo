@@ -29,7 +29,7 @@ import com.skillstorm.repositories.StatusRepository;
 
 @RestController
 @RequestMapping("/profiles")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3000",  allowCredentials = "true")
 public class ProfileController {
 
 	@Autowired
