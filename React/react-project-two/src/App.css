@@ -1,16 +1,18 @@
 .App{
   background-color: #d9d9d9;
+  min-height: 100vh;
+  min-width: 100vh;
 }
 .content {
   margin: 2vh;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 4vh;
-  max-width: 70%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto, auto);
   gap: 10px;
   grid-auto-rows: minmax(100px, auto);
+  max-width: 70%;
   
 }
 #account-titles {
@@ -40,9 +42,16 @@
 }
 #profile-button {
   margin: 2px;
-  
   float: right;
+  justify-content: end;
 }
+
+#profile-delete {
+  position: relative;
+  bottom: 0px;
+  align-items: end;
+}
+
 #plan {
   grid-column: 2/4;
   grid-row: 1;
@@ -50,9 +59,9 @@
 }
 #plan-layout {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto, auto);
   gap: 10px;
-  grid-auto-rows: minmax(75px, auto);
+  grid-auto-rows: minmax(auto, auto);
   text-align: center;
   
 }
@@ -102,6 +111,10 @@
   font-weight: 500;
   padding-left: 24px;
   padding-right: 24px;
+  
+}
+#toolbar {
+  background-color: #0A1E26;
 }
 
 #nav-content{

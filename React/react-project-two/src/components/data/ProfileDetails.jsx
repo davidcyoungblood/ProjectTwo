@@ -133,11 +133,8 @@ export const ProfileDetails = () => {
       >
         Edit Profile
       </button>
-      {/* <button type="button" className="btn btn-primary" id="profile-button">
-        Reset Password
-      </button> */}
       <br />
-      <Nav.Link as={Link} to="/" id = "nav-title" onClick={deleteProfile}>
+      <Nav.Link as={Link} to="/" id = "profile-delete"  onClick={deleteProfile}>
       <button type="button" className="btn btn-danger">
       Delete
       </button>

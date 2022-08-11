@@ -12,6 +12,7 @@ import { ServicePlanList, StatusList, IntervalList, Footer } from '../components
 import { ThunderstormIcon } from '../components';
 import { Link } from 'react-router-dom';
 
+
 // https://github.com/mui/material-ui/tree/v5.9.3/docs/data/material/getting-started/templates/album
 
 export const Welcome = () => {
@@ -22,7 +23,7 @@ export const Welcome = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <AppBar position="relative">
-          <Toolbar>
+          <Toolbar id = "toolbar">
             <ThunderstormIcon />
             <Typography variant="h6" color="inherit" noWrap>
               StormCloud
