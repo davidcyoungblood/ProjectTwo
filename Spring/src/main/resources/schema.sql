@@ -2,6 +2,23 @@
    Create Tables
 ********************************************************************************/
 
+/*******************************************************************************
+   BEGIN SPRING SECURITY Tables
+********************************************************************************/
+create table users(
+    username varchar_ignorecase(50) not null primary key,
+    password varchar_ignorecase(50) not null,
+    enabled boolean not null
+);
+create table authorities (
+    username varchar_ignorecase(50) not null,
+    authority varchar_ignorecase(50) not null,
+    constraint fk_authorities_users foreign key(username) references users(username)
+);
+create unique index ix_auth_username on authorities (username,authority);
+/*******************************************************************************
+   END SPRING SECURITY Tables
+********************************************************************************/
 create table Profile (
 	ProfileId INT NOT NULL AUTO_INCREMENT,
     FirstName VARCHAR(50),
@@ -17,6 +34,8 @@ create table Profile (
     ServicePlanId INT NOT NULL,
     CONSTRAINT PKProfileId PRIMARY KEY (ProfileId)
 );
+
+
 create table ServicePlan (
 	ServicePlanId INT NOT NULL AUTO_INCREMENT,
 	Name VARCHAR(50),
@@ -57,5 +76,4 @@ FOREIGN KEY (IntervalsId) REFERENCES Intervals(IntervalsId) ON DELETE NO ACTION 
 
 ALTER TABLE BillingInformation ADD CONSTRAINT BillingInformationFKProfileId
 FOREIGN KEY (ProfileId) REFERENCES Profile(ProfileId) ON DELETE SET NULL;
-
 

@@ -2,6 +2,13 @@
    Create Dummies
 ********************************************************************************/
 
+INSERT INTO users (username, password, enabled) values('user','user', true);
+INSERT INTO users (username, password, enabled) values('admin','admin', true);
+
+INSERT INTO authorities(username, authority) values('user','ROLE_USER');
+INSERT INTO authorities(username, authority) values('admin','ROLE_ADMIN');
+
+
 insert into Status (Name) values ('Free Trial');
 insert into Status (Name) values ('Active');
 insert into Status (Name) values ('Expiring Soon');
@@ -27,7 +34,6 @@ insert into Profile (FirstName, LastName, Username, Email, Password, ServicePlan
 insert into Profile (FirstName, LastName, Username, Email, Password, ServicePlanId, StartDate, NextBillDate, EndDate, StatusId, IntervalsId) values ('Rube', 'Aslie', 'raslie7', 'raslie7@soup.io', 'AKWnS08oZ', 3, null,null,null,2,3);
 insert into Profile (FirstName, LastName, Username, Email, Password, ServicePlanId, StartDate, NextBillDate, EndDate, StatusId, IntervalsId) values ('Elliott', 'Bugbee', 'ebugbee8', 'ebugbee8@marketwatch.com', 'O6aNTaLjOG', 3, null,null,null,4,4);
 insert into Profile (FirstName, LastName, Username, Email, Password, ServicePlanId, StartDate, NextBillDate, EndDate, StatusId, IntervalsId) values ('Lucais', 'de Castelain', 'ldecastelain9', 'ldecastelain9@devhub.com', 'YEc8XKnxyBg', 4, null,null,null,2,1);
-
 
 insert into BillingInformation (BilledOnDate, ProfileId) values ('01/01/2022', 1);
 insert into BillingInformation (BilledOnDate, ProfileId) values ('01/05/2022', 1);

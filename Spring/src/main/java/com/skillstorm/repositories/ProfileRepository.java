@@ -12,5 +12,8 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
 	// treat the query as native one not according to JPA specification
 	@Query(value = "SELECT ProfileId FROM Profile p WHERE p.Email = ?1 AND p.Password = ?2", nativeQuery = true)
 	public int findIdByEmailAndPassword(String email, String password);
+	
+	@Query(value = "SELECT ProfileId FROM Profile p WHERE p.Username = ?1 AND p.Password = ?2", nativeQuery = true)
+	public int findIdByUsernameAndPassword(String username, String password);
 
 }
