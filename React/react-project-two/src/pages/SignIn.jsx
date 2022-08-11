@@ -23,10 +23,40 @@ const theme = createTheme();
 export const SignIn = () => {
     const navigate = useNavigate();
 
+    const basicAuthorize = (data) => {
+        let username = data.get('email');
+        let password = data.get('password');
+
+        fetch("http://localhost:8090/", {
+            headers: {
+                'Content-Type':'application/json',
+                "Authorization": 'Basic ' + username + ":" + password
+            }
+        }).then(resp => {
+            console.log(resp);
+            if (resp.ok) {
+                // this.setState({
+                //     isLoginSucces: true
+                // });
+                console.log("logged in")
+            } else {
+                // this.setState({ isLoginSucces: false });
+                console.log("not logged in")
+            }
+
+            // return resp.text();
+            console.log(resp.text);
+        });
+    }
+
+
+
+
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
             const data = new FormData(event.currentTarget);
+            basicAuthorize(data);
             // extract data from form and send GET request
             const response = await axios.get(`http://localhost:8090/profiles/${data.get('email')}/${data.get('password')}`);
             //some kind of validation needs to happen right here

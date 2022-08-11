@@ -1,5 +1,9 @@
 package com.skillstorm.configurations;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +16,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -40,24 +47,18 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		http.httpBasic();
 		http
+		.cors().and()
 		.csrf().disable()
 		.authorizeRequests()
-//		.antMatchers("/**").hasRole("ADMIN")
 		.antMatchers("/plan").permitAll()
 		.antMatchers("/status").permitAll()
 		.antMatchers("/interval").permitAll()
 //		.antMatchers("/profiles").hasAnyRole("ADMIN")
 //		.antMatchers("/profiles/id").hasAnyRole("USER", "ADMIN")
-		.antMatchers("/**").hasAnyRole("ADMIN")
-//		.antMatchers("/user").hasAnyRole("USER", "ADMIN")
-//		.antMatchers("/").hasAnyRole("USER", "ADMIN")
-		
-//		.antMatchers("/").permitAll()
-		.and()
-//		.httpBasic();
-		.formLogin();
+		.antMatchers("/**").hasAnyRole("ADMIN");
+//		.formLogin();
 //		.loginPage("/login");
 	}
-
 }
