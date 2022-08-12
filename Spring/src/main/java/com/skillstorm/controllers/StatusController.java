@@ -23,35 +23,34 @@ import com.skillstorm.repositories.StatusRepository;
 @CrossOrigin(origins = "*")
 public class StatusController {
 	@Autowired
-	private StatusRepository repository; 
-	
+	private StatusRepository repository;
+
 	@GetMapping()
 	public List<Status> getStatuses() {
-		return repository.findAll(); 
+		return repository.findAll();
 	}
-	
+
 	@GetMapping("/{id}")
 	public Optional<Status> findById(@PathVariable int id) {
-		return repository.findById(id); 
+		return repository.findById(id);
 	}
-	
+
 	@PutMapping("/{id}")
 	@Transactional
 	public Status update(@RequestBody Status status, @PathVariable int id) {
-		if(repository.existsById(id)) {
-			status.setId(id); 
+		if (repository.existsById(id)) {
+			status.setId(id);
 			return repository.save(status);
+		} else {
+			throw new IllegalArgumentException("Id doesn't exist");
 		}
-		else {
-			throw new IllegalArgumentException("Id doesn't exist"); 
-		}
-		
+
 	}
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable int id) {
-		repository.deleteById(id); 
-		return ResponseEntity.noContent().header("Custom-header", "abcde").build(); 
+		repository.deleteById(id);
+		return ResponseEntity.noContent().header("Custom-header", "abcde").build();
 	}
-	
-	
+
 }
