@@ -27,17 +27,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(datasource).passwordEncoder(passwordEncoder);
 	}
+
 	
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.csrf().disable().httpBasic(); // not-prod
 		http.authorizeRequests().mvcMatchers("/login-check");
-		http.authorizeRequests().mvcMatchers("/profiles/**");
-		
-		http.authorizeRequests().mvcMatchers("/billing/**");
-		http.authorizeRequests().mvcMatchers("/interval/**");
-		http.authorizeRequests().mvcMatchers("/plan/**");
-		http.authorizeRequests().mvcMatchers("/status/**");
+//		http.authorizeRequests().mvcMatchers("/profiles/**");
+//		
+//		http.authorizeRequests().mvcMatchers("/billing/**");
+//		http.authorizeRequests().mvcMatchers("/interval/**");
+//		http.authorizeRequests().mvcMatchers("/plan/**");
+//		http.authorizeRequests().mvcMatchers("/status/**");
 		http.authorizeRequests().mvcMatchers("/**").permitAll();
 		http.logout().deleteCookies("custom-cookie").invalidateHttpSession(false); // POST /logout
 		// CSRF - 

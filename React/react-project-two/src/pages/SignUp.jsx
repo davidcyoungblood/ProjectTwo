@@ -63,12 +63,14 @@ export const SignUp = () => {
 
                         <Typography component="h1" variant="h5">
                             Sign up
-                        </Typography>
-                        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                        </Typography> 
+                        {/* Took out noValidate so that null values are not entered */}
+                        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
-                                        autoComplete="given-name"
+                                        //autoComplete="given-name"
+                                        
                                         name="firstName"
                                         required
                                         fullWidth

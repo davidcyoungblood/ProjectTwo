@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRef } from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Nav from "react-bootstrap/esm/Nav";
 import { Link } from "react-router-dom";
 
@@ -134,7 +134,7 @@ export const ProfileDetails = () => {
         Edit Profile
       </button>
       <br />
-      <Nav.Link as={Link} to="/" id = "profile-delete"  onClick={deleteProfile}>
+      <Nav.Link as={Link} to="/"  onClick={deleteProfile}>
       <button type="button" className="btn btn-danger">
       Delete
       </button>

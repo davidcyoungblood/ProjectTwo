@@ -16,11 +16,10 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
-	
-	//EDIT
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();  // 10 salt
+		return new BCryptPasswordEncoder();
 	}
 
 }
