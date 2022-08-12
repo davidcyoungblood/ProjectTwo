@@ -40,7 +40,7 @@ export const Interval = ({ card, setIntervalUpdated }) => {
         >
             <CardMedia
                 component="img"
-                image="https://source.unsplash.com/random/400"
+                image="https://source.unsplash.com/random/410"
                 alt="random"
             />
             <CardContent sx={{ flexGrow: 1 }}>

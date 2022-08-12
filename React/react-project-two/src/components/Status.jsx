@@ -38,7 +38,7 @@ export const Status = ({ card, setStatusUpdated }) => {
         >
             <CardMedia
                 component="img"
-                image="https://source.unsplash.com/random/400"
+                image="https://source.unsplash.com/random/405"
                 alt="random"
             />
             <CardContent sx={{ flexGrow: 1 }}>
