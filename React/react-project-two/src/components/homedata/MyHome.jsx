@@ -103,7 +103,7 @@ export const MyHome = () => {
     };
 
     const filterServicePlanButtonOptions = (card) => {
-        if (profile.servicePlanId.id === null) {
+        if (profile.statusId.id === 4) {
             return (<Button variant="contained" color="error" size="small" >To re-subscribe, please update account in 'view account'</Button>);
         }
         if (profile.servicePlanId.id === card.id && card.id === 1) {
@@ -120,7 +120,9 @@ export const MyHome = () => {
     }
 
     const filterStatusButtonOptions = (card) => {
-
+        if (profile.statusId.id === 4) {
+            return (<Button variant="contained" color="error" size="small" >To re-subscribe, please update account in 'view account'</Button>);
+        }
         if (profile.servicePlanId.id === 1 && card.id === 1) {
 
             return (<Button variant="contained" color="success" size="small" >Active</Button>);
@@ -139,6 +141,9 @@ export const MyHome = () => {
     }
 
     const filterIntervalButtonOptions = (card) => {
+        if (profile.statusId.id === 4) {
+            return (<Button variant="contained" color="error" size="small" >To re-subscribe, please update account in 'view account'</Button>);
+        }
         if (profile.servicePlanId.id === 1 && profile.statusId.id === 1 && card.id === 1) {
             return (<Button variant="contained" color="success" size="small" >Active</Button>);
         }
