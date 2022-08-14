@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.springframework.aop.AopInvocationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,9 +53,9 @@ public class ProfileController {
 	// test
 	@Autowired
 	private BillingInfoRepository billingInfoRepository;
-	
+
 	@Autowired
-	private BCryptPasswordEncoder passwordEncoder; 
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@GetMapping() // GET METHOD
 	public List<Profile> getProfiles() {
@@ -68,24 +69,26 @@ public class ProfileController {
 
 	@GetMapping("/{email}/{password}")
 	public Optional<Profile> getProfileByEmailAndPassword(@PathVariable String email, @PathVariable String password) {
-		
-		
-		Profile profile = profileRepository.findById(profileRepository.findIdByEmail(email)).get(); 
-		 
-		
-		boolean test = passwordEncoder.matches(password, profile.getPassword()); 
-		
-		return (test ? profileRepository.findById(profile.getId()) : null);
-		
+		boolean test = false;
+		Profile profile = null;
+		try {
+			profile = profileRepository.findById(profileRepository.findIdByEmail(email)).get();
+
+			test = passwordEncoder.matches(password, profile.getPassword());
+
+		} catch (AopInvocationException e) {
+			// TODO: handle exception
+		}
+		return (test ? profileRepository.findById(profile.getId()) : Optional.empty());
+
 	}
 
 	@PostMapping
 	@Transactional
 	public ResponseEntity<Profile> save(@Valid @RequestBody Profile profile) {
-		
+
 		profile.setPassword(passwordEncoder.encode(profile.getPassword()));
-		
-		
+
 		// DEFAULT PROFILE SETTINGS
 		Optional<ServicePlan> plan = servicePlanRepository.findById(1);
 		Optional<Status> status = statusRepository.findById(1);
@@ -94,7 +97,7 @@ public class ProfileController {
 		if (plan.isPresent() && status.isPresent() && interval.isPresent()) {
 			profile.setServicePlanId(plan.get());
 			profile.setStatusId(status.get());
-			profile.setIntervalId(interval.get()); 
+			profile.setIntervalId(interval.get());
 		}
 
 		return new ResponseEntity<>(profileRepository.save(profile), HttpStatus.CREATED);
@@ -106,15 +109,13 @@ public class ProfileController {
 	public Profile update(@RequestBody Profile profile, @PathVariable int id) {
 		if (profileRepository.existsById(id)) {
 			profile.setId(id);
-			
-			
-			//LOGIC FOR IF PASSWORD CHANGE
-			Profile temp = profileRepository.findById(id).get(); 
+
+			// LOGIC FOR IF PASSWORD CHANGE
+			Profile temp = profileRepository.findById(id).get();
 			if (!Objects.equals(temp.getPassword(), profile.getPassword())) {
 				profile.setPassword(passwordEncoder.encode(profile.getPassword()));
 			}
-			
-			
+
 			return profileRepository.save(profile);
 		} else {
 			throw new IllegalArgumentException("Id doesn't exist");

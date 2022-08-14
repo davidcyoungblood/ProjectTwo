@@ -14,6 +14,7 @@ import { Footer, ThunderstormIcon } from "../components";
 import { Link as LinkReactRouterDom, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
 //import { Copyright } from '../components/Copyright';
 // https://github.com/mui/material-ui/blob/v5.9.2/docs/data/material/getting-started/templates/sign-in/SignIn.js
 
@@ -32,10 +33,14 @@ export const SignIn = () => {
           "password"
         )}`
       );
-      //some kind of validation needs to happen right here
-      sessionStorage.clear();
-      sessionStorage.setItem("loggedIn", JSON.stringify(response.data));
-      navigate("/home", { state: response.data });
+
+      if (response.data === null) {
+        window.location.reload();
+      } else {
+        sessionStorage.clear();
+        sessionStorage.setItem("loggedIn", JSON.stringify(response.data));
+        navigate("/home", { state: response.data });
+      }
     } catch (e) {
       console.error(e);
     }

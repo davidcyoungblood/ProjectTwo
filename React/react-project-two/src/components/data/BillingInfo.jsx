@@ -24,7 +24,7 @@ export const BillingInfo = () => {
   const [billing, setBilling] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:8090/billing/${profile.id}`  /*,${profile.id} {params : profile.id}*/)
+      .get(`http://localhost:8090/billing/${profile.id}`)
       .then((res) => setBilling(res.data));
   }, []);
 

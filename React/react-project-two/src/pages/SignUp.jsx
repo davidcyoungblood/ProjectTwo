@@ -23,10 +23,6 @@ export const SignUp = () => {
     const navigateToSignIn = () => {
         navigate('/signin');
     };
-    //handle empty fnam,lname
-    //handle email format
-    //handle empty password
-    //handle non unique results - spring
 
     const handleSubmit = async (event) => {
         try {

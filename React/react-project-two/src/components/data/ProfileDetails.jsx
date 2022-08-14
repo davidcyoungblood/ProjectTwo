@@ -5,12 +5,6 @@ import {useNavigate } from "react-router-dom";
 import { useConfirm } from 'material-ui-confirm';
 
 export const ProfileDetails = () => {
-  //const [profile, setProfiles] = useState([]);
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:8090/profiles/1` /*, {params : profile.id}*/)
-  //     .then((res) => setProfiles(res.data));
-  // }, []);
   const fnRef = useRef();
   const lnRef = useRef();
   const unRef = useRef();
