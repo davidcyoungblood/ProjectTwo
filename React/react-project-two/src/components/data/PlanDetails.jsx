@@ -1,14 +1,11 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
 
 export const PlanDetails = () => {
-
-  var [plan, setPlans] = useState([]);
 
   const string = sessionStorage.getItem("loggedIn");
   const profile = JSON.parse(string)
 
-  plan = profile.servicePlanId;
+  const plan = profile.servicePlanId;
 
   const handleCancel = async (e) => {
     try {
@@ -99,7 +96,7 @@ export const PlanDetails = () => {
           <h1>{plan.price}</h1>
         </li>
       </ul>
-      {(profile.statusId.id == 4) ? <button className="btn btn-success" id="plan-button" onClick={() => reactivate()}>Reactivate</button> :
+      {(profile.statusId.id === 4) ? <button className="btn btn-success" id="plan-button" onClick={() => reactivate()}>Reactivate</button> :
         <button type="button" className="btn btn-danger" id="plan-button" onClick={handleCancel}>Cancel Subscription</button>
       }
     </div>
