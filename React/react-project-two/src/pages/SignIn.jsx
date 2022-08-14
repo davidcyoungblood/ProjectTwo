@@ -86,7 +86,7 @@ export const SignIn = () => {
               />
               <Button
                 type="submit"
-                fullWidth={true} //edit changed to true to click anywhere on the sign in button, cannot be string, has to be boolean
+                fullWidth={true}
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >

@@ -8,7 +8,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { ServicePlanList, StatusList, IntervalList, Footer } from '../components';
+import { ServicePlanList, StatusList, IntervalList } from '../components/cardListData';
+import {Footer} from '../components'
 import { ThunderstormIcon } from '../components';
 import { Link } from 'react-router-dom';
 
@@ -57,7 +58,7 @@ export const Welcome = () => {
                 spacing={2}
                 justifyContent="center"
               >
-                <Button variant="contained"><Link style={{ color: 'white', textDecoration: 'none' }} to='/signup'>Sign Up</Link></Button>
+                <Button variant="contained" ><Link style={{color: 'white', textDecoration: 'none' }} to='/signup' >Sign Up</Link></Button>
                 <Button variant="outlined"><Link style={{ color: 'black', textDecoration: 'none' }} to='/signin'>Sign In</Link></Button>
               </Stack>
             </Container>

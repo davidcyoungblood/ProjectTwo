@@ -8,6 +8,5 @@ import com.skillstorm.beans.ServicePlan;
 @Repository
 public interface ServicePlanRepository extends JpaRepository<ServicePlan, Integer>{
 	
-//	public Profile save(Profile profile);
 
 }

@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useRef } from "react";
 import { useState } from "react";
-import Nav from "react-bootstrap/esm/Nav";
-import { Link } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
+import { useConfirm } from 'material-ui-confirm';
 
 export const ProfileDetails = () => {
   //const [profile, setProfiles] = useState([]);
@@ -16,6 +16,10 @@ export const ProfileDetails = () => {
   const unRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef(); 
+
+  const confirm = useConfirm(); 
+  
+  const navigate = useNavigate(); 
 
   const [isEditing, setEditing] = useState(false);
 
@@ -60,19 +64,19 @@ export const ProfileDetails = () => {
       <ul className="list-group list-group-flush" id="profile-details">
         <li className="list-group-item">
           <h6 id="profile-item">first name</h6>
-          <h6>{profile.firstName}</h6>
+          <h5>{profile.firstName}</h5>
         </li>
         <li className="list-group-item">
           <h6 id="profile-item">last name</h6>
-          <h6>{profile.lastName}</h6>
+          <h5>{profile.lastName}</h5>
         </li>
         <li className="list-group-item">
           <h6 id="profile-item">username</h6>
-          <h6>{profile.username}</h6>
+          <h5>{profile.username}</h5>
         </li>
         <li className="list-group-item">
           <h6 id="profile-item">email</h6>
-          <h6>{profile.email}</h6>{" "}
+          <h5>{profile.email}</h5>{" "}
         </li>
       </ul>
     );
@@ -113,13 +117,19 @@ export const ProfileDetails = () => {
             .delete(`http://localhost:8090/profiles/${profile.id}`)
       
       sessionStorage.removeItem("loggedIn")
+      navigate("/")
     } catch (error) {
-      
     }
-
   }
+  const handleDelete = () => {  
 
-  return (
+    confirm({description: 'You are fixing to delete your account! This action cannot be undone.', title: 'Confirm Delete Account'})
+    .then(() => deleteProfile())
+    .catch(() => {console.log('did not delete')}); 
+    
+  };
+
+  return (    
     <div>
       <h2 id="account-titles">Profile Details</h2>
 
@@ -133,12 +143,11 @@ export const ProfileDetails = () => {
       >
         Edit Profile
       </button>
-      <br />
-      <Nav.Link as={Link} to="/"  onClick={deleteProfile}>
-      <button type="button" className="btn btn-danger">
+
+      
+      <button type="button" id="profile-button" className="btn btn-danger" onClick={() => handleDelete()}>
       Delete
       </button>
-      </Nav.Link>
       
     </div>
   );

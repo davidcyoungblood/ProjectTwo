@@ -1,4 +1,4 @@
-import { Container } from "../components/data";
+import { Container } from "../components/viewAccountData";
 import { NavBar } from "../components/NavBar";
 export const ViewAccount = () => {
   return (

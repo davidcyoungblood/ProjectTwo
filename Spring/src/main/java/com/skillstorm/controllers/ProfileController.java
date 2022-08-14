@@ -1,6 +1,7 @@
 package com.skillstorm.controllers;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -105,6 +106,15 @@ public class ProfileController {
 	public Profile update(@RequestBody Profile profile, @PathVariable int id) {
 		if (profileRepository.existsById(id)) {
 			profile.setId(id);
+			
+			
+			//LOGIC FOR IF PASSWORD CHANGE
+			Profile temp = profileRepository.findById(id).get(); 
+			if (!Objects.equals(temp.getPassword(), profile.getPassword())) {
+				profile.setPassword(passwordEncoder.encode(profile.getPassword()));
+			}
+			
+			
 			return profileRepository.save(profile);
 		} else {
 			throw new IllegalArgumentException("Id doesn't exist");

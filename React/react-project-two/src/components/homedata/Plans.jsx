@@ -58,7 +58,7 @@ export const Plans = () => {
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <main>
-                <Container sx={{ py: 8 }} maxWidth="md">
+                <Container sx={{ py: 2 }} maxWidth="md">
                     <Grid container spacing={4}>
                         
                         {/* map all service plans to a card */}

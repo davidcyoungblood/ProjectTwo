@@ -5,37 +5,36 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Status } from './Status';
+import { Interval } from '../cardData/Interval';
 
 const theme = createTheme();
 
-export const StatusList = () => {
-    const [statuses, setStatuses] = useState([]);
-    const [statusUpdated, setStatusUpdated] = useState(false);
+export const IntervalList = () => {
+    const [intervals, setIntervals] = useState([]);
+    const [intervalUpdated, setIntervalUpdated] = useState(false);
 
-    // get all statuses
-    // if a status is updated, refresh, and reset state 
+    // get all intervals
+    // if a interval is updated, refresh, and reset state
     useEffect(() => {
-        axios.get(`http://localhost:8090/status`)
-            .then(response => setStatuses(response.data));
+        axios.get(`http://localhost:8090/interval`)
+            .then(response => setIntervals(response.data));
 
         return () => {
-            setStatusUpdated(false)
+            setIntervalUpdated(false)
         }
-    }, [statusUpdated]);
+    }, [intervalUpdated]);
 
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <main>
-                <Container sx={{ py: 8 }} maxWidth="md">
+                <Container sx={{ py: 2 }} maxWidth="md">
                     <Grid container spacing={4}>
-
-                        {/* map all statuses to a card */}
-                        {statuses.map((card) => {
+                        {/* map all intervals to a card */}
+                        {intervals.map((card) => {
                             return (
                                 <Grid item key={card.id} xs={12} sm={6} md={3}>
-                                    <Status card={card} setStatusUpdated={setStatusUpdated} />
+                                    <Interval card={card} setIntervalUpdated={setIntervalUpdated} />
                                 </Grid>
                             );
                         })}

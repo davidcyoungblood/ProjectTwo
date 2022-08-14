@@ -17,7 +17,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { Profile } from '../components/Profile';
-import {Plans, Statuses, Intervals} from '../components/homedata'
+import {Plans, Statuses, Intervals} from '../components/homeData'
 
 // https://github.com/mui/material-ui/tree/v5.9.3/docs/data/material/getting-started/templates/album
 

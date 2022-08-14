@@ -5,37 +5,37 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { ServicePlan } from './ServicePlan';
+import { Status } from '../cardData/Status';
 
 const theme = createTheme();
 
-export const ServicePlanList = () => {
-    const [servicePlans, setServicePlans] = useState([]);
-    const [servicePlanUpdated, setServicePlanUpdated] = useState(false);
+export const StatusList = () => {
+    const [statuses, setStatuses] = useState([]);
+    const [statusUpdated, setStatusUpdated] = useState(false);
 
-    // get all service plans
-    // if a service plan is updated, refresh, and reset state 
+    // get all statuses
+    // if a status is updated, refresh, and reset state 
     useEffect(() => {
-        axios.get(`http://localhost:8090/plan`)
-            .then(response => setServicePlans(response.data));
+        axios.get(`http://localhost:8090/status`)
+            .then(response => setStatuses(response.data));
 
         return () => {
-            setServicePlanUpdated(false)
+            setStatusUpdated(false)
         }
-    }, [servicePlanUpdated]);
+    }, [statusUpdated]);
 
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <main>
-                <Container sx={{ py: 8 }} maxWidth="md">
+                <Container sx={{ py: 2 }} maxWidth="md">
                     <Grid container spacing={4}>
 
-                        {/* map all service plans to a card */}
-                        {servicePlans.map((card) => {
+                        {/* map all statuses to a card */}
+                        {statuses.map((card) => {
                             return (
                                 <Grid item key={card.id} xs={12} sm={6} md={3}>
-                                    <ServicePlan card={card} setServicePlanUpdated={setServicePlanUpdated} />
+                                    <Status card={card} setStatusUpdated={setStatusUpdated} />
                                 </Grid>
                             );
                         })}
