@@ -45,7 +45,7 @@ export const MyHome = () => {
 
     const handleServicePlanUpdate = (card) => {
         profile.servicePlanId = card;
-        console.log(statuses[0]);
+        // console.log(statuses[0]);
 
         // setting statuses and intervals according to service plan card id
         if (card.id === 1) {
