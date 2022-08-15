@@ -11,7 +11,7 @@ spring:
       com:
         skillstorm: WARN  
   application:
-    name: skillstorm-api
+    name: skillstorm-stormcloud-api-p2
   jpa:
     hibernate:
       naming:
