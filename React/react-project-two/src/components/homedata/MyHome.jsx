@@ -24,7 +24,7 @@ export const MyHome = () => {
     const string = sessionStorage.getItem("loggedIn");
     const profile = JSON.parse(string);
 
-    // get all service plans
+    // load all avaiable options for a user
     useEffect(() => {
 
         axios.get(`http://localhost:8090/plan`)

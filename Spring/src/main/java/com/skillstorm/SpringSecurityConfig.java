@@ -41,14 +41,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 //		http.authorizeRequests().mvcMatchers("/plan/**");
 //		http.authorizeRequests().mvcMatchers("/status/**");
 //		http.authorizeRequests().mvcMatchers("/**").permitAll();
-//		http.logout().deleteCookies("custom-cookie").invalidateHttpSession(false); // POST /logout
-		// CSRF -
-		// 1. login to Bank of America (session, cookie)
-		// 2. hacker send you an email with link
-		// 3. click link href=malicious JS   POST boa.com/api/transfer/your-acct/myacct/balance
-		// 4. YOU initiated the request
-
-		// generate a random csrf_token. Unsafe methods MUST contain the CSRF token or-else request is denied
+//		http.logout().deleteCookies("custom-cookie").invalidateHttpSession(false);
+		
 
 	}
 
